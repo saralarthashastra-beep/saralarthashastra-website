@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="EMI explained — the math, the formula, year-by-year breakdown, and the prepayment strategies banks don't tell you about. By a 15-year banker.">
+<title>EMI Explained: The Math Your Bank Doesn't Show You — SaralArthaShastra</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' fill='%230d1b2a'/%3E%3Ccircle cx='96' cy='96' r='86' fill='none' stroke='%23c9a55a' stroke-width='3'/%3E%3Ctext x='96' y='128' font-family='Georgia,serif' font-size='100' font-weight='bold' font-style='italic' fill='%23c9a55a' text-anchor='middle'%3ESa%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root { --ink: #0d1b2a; --ink-2: #1c2e4a; --paper: #f4ede1; --paper-2: #ebe3d4; --paper-3: #faf6ed; --gold: #c9a55a; --gold-light: #e8c87a; --gold-deep: #9c7a3c; --rust: #a84432; --teal: #1f4f4a; --green: #2d6a4f; --line: rgba(13, 27, 42, 0.12); --shadow: 0 8px 30px -8px rgba(13, 27, 42, 0.25); }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { background: var(--paper); color: var(--ink); font-family: 'Fraunces', Georgia, serif; -webkit-font-smoothing: antialiased; font-size: 18px; line-height: 1.65; }
+a { color: var(--rust); }
+a:hover { text-decoration: underline; }
+.site-header { background: var(--ink); color: var(--paper); padding: 18px 0; border-bottom: 2px solid var(--gold); position: sticky; top: 0; z-index: 100; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.header-row { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.brand-link { display: flex; align-items: center; gap: 12px; color: var(--paper); text-decoration: none; }
+.brand-mark { width: 38px; height: 38px; border-radius: 50%; background: var(--ink); border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; font-style: italic; font-weight: 600; font-size: 18px; color: var(--gold); flex-shrink: 0; }
+.brand-name { font-size: 16px; font-weight: 600; letter-spacing: -0.3px; }
+.brand-sub { font-size: 10px; font-family: 'JetBrains Mono', monospace; color: var(--gold); letter-spacing: 1.5px; text-transform: uppercase; }
+.nav-links { display: flex; gap: 24px; list-style: none; }
+.nav-links a { color: var(--paper); font-size: 14px; font-weight: 500; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.5px; text-decoration: none; }
+.nav-links a:hover { color: var(--gold); }
+@media (max-width: 700px) { .nav-links { display: none; } }
+
+.article-hero { padding: 70px 0 50px; background: linear-gradient(135deg, var(--paper-3) 0%, var(--paper-2) 100%); border-bottom: 1px solid var(--line); }
+.article-hero-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--gold-deep); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+.article-hero h1 { font-size: clamp(36px, 5.5vw, 60px); font-weight: 500; letter-spacing: -1.4px; line-height: 1.05; margin-bottom: 24px; max-width: 880px; font-variation-settings: "opsz" 144; }
+.article-hero h1 em { font-style: italic; color: var(--rust); font-weight: 400; }
+.article-meta { display: flex; gap: 20px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: rgba(13, 27, 42, 0.6); letter-spacing: 0.5px; flex-wrap: wrap; }
+
+.article-body { max-width: 720px; margin: 60px auto; padding: 0 24px; }
+.article-body p { margin-bottom: 1.4em; color: rgba(13, 27, 42, 0.85); }
+.article-body p.lede { font-size: 22px; line-height: 1.5; color: rgba(13, 27, 42, 0.75); font-weight: 400; margin-bottom: 1.8em; font-style: italic; }
+.article-body h2 { font-size: 32px; font-weight: 600; letter-spacing: -0.7px; line-height: 1.2; margin-top: 2.5em; margin-bottom: 0.6em; color: var(--ink); }
+.article-body h2 em { font-style: italic; color: var(--rust); }
+.article-body h3 { font-size: 22px; font-weight: 600; letter-spacing: -0.3px; margin-top: 1.8em; margin-bottom: 0.5em; color: var(--ink); }
+.article-body h3 em { font-style: italic; color: var(--rust); }
+.article-body strong { font-weight: 600; color: var(--ink); }
+.article-body em { font-style: italic; }
+.article-body ul, .article-body ol { margin: 1em 0 1.4em 0; padding-left: 24px; }
+.article-body li { margin-bottom: 0.5em; color: rgba(13, 27, 42, 0.85); }
+.article-body ul li::marker { color: var(--gold); }
+.article-body ol li::marker { color: var(--rust); font-weight: 600; }
+.article-body code { font-family: 'JetBrains Mono', monospace; font-size: 14px; background: var(--paper-3); padding: 2px 6px; border-radius: 4px; color: var(--rust); border: 1px solid var(--line); }
+
+.callout { background: var(--paper-3); border-left: 3px solid var(--gold); border-radius: 0 12px 12px 0; padding: 24px 28px; margin: 2em 0; font-size: 16px; line-height: 1.6; }
+.callout-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--gold-deep); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; font-weight: 600; }
+.callout p { margin-bottom: 0.6em; }
+.callout p:last-child { margin-bottom: 0; }
+.callout strong { color: var(--rust); }
+.callout.warning { background: rgba(192, 57, 43, 0.06); border-left-color: var(--rust); }
+.callout.warning .callout-label { color: var(--rust); }
+.callout.success { background: rgba(45, 106, 79, 0.06); border-left-color: var(--green); }
+.callout.success .callout-label { color: var(--green); }
+
+.figure { margin: 2em 0; background: white; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); }
+.figure-header { background: var(--ink); color: var(--gold); padding: 14px 20px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; }
+.figure-body { padding: 24px; }
+.figure-caption { font-size: 14px; color: rgba(13, 27, 42, 0.6); font-style: italic; padding: 12px 24px 18px; background: var(--paper-3); }
+
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+table th { background: var(--ink); color: var(--paper); padding: 12px 16px; text-align: left; font-weight: 600; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.5px; text-transform: uppercase; }
+table td { padding: 12px 16px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+table tr:nth-child(even) td { background: var(--paper-3); }
+
+.tldr { background: var(--ink); color: var(--paper); padding: 30px; border-radius: 14px; margin: 2.5em 0; }
+.tldr-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; font-weight: 600; margin-bottom: 12px; }
+.tldr h3 { font-size: 22px; font-weight: 600; letter-spacing: -0.3px; margin-bottom: 12px; color: var(--paper); }
+.tldr p { color: rgba(244, 237, 225, 0.85); margin-bottom: 0.8em; font-size: 16px; }
+.tldr p:last-child { margin-bottom: 0; }
+
+.related-block { background: var(--paper-3); border-radius: 18px; padding: 40px; margin: 60px 0; }
+.related-block h2 { font-size: 24px; font-weight: 600; letter-spacing: -0.4px; margin-bottom: 20px; }
+.related-block h2 em { font-style: italic; color: var(--rust); }
+.related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.related-link { background: white; padding: 18px 20px; border-radius: 10px; border: 1px solid var(--line); text-decoration: none; color: var(--ink); display: block; transition: all 0.2s; }
+.related-link:hover { box-shadow: var(--shadow); transform: translateY(-2px); text-decoration: none; }
+.related-link-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--gold-deep); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; font-weight: 600; }
+.related-link h3 { font-size: 16px; font-weight: 600; line-height: 1.3; }
+
+.cta-end { background: var(--ink); color: var(--paper); padding: 50px 40px; border-radius: 18px; text-align: center; margin: 60px 0 80px; }
+.cta-end h2 { font-size: 30px; font-weight: 500; letter-spacing: -0.6px; margin-bottom: 12px; color: var(--paper); }
+.cta-end h2 em { font-style: italic; color: var(--gold-light); }
+.cta-end p { color: rgba(244, 237, 225, 0.7); margin-bottom: 22px; max-width: 480px; margin-left: auto; margin-right: auto; }
+.btn { display: inline-flex; align-items: center; gap: 8px; background: var(--rust); color: white; padding: 13px 24px; border-radius: 999px; font-family: 'Fraunces', serif; font-size: 15px; font-weight: 500; text-decoration: none; transition: all 0.2s; margin: 4px; }
+.btn:hover { background: #c0594a; text-decoration: none; }
+.btn-ghost { background: transparent; color: var(--gold-light); border: 1px solid var(--gold); }
+.btn-ghost:hover { background: var(--gold); color: var(--ink); }
+
+.site-footer { background: var(--ink); color: var(--paper); padding: 50px 0 30px; border-top: 2px solid var(--gold); font-size: 14px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 30px; }
+@media (max-width: 700px) { .footer-grid { grid-template-columns: 1fr; gap: 28px; } }
+.footer-col h3 { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; font-weight: 600; }
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 8px; }
+.footer-col a { color: rgba(244, 237, 225, 0.7); text-decoration: none; }
+.footer-col a:hover { color: var(--gold); }
+.footer-tagline { font-style: italic; color: rgba(244, 237, 225, 0.6); margin-top: 8px; max-width: 320px; }
+.footer-bottom { padding-top: 24px; border-top: 1px solid rgba(244, 237, 225, 0.1); display: flex; justify-content: space-between; font-size: 12px; color: rgba(244, 237, 225, 0.5); font-family: 'JetBrains Mono', monospace; }
+@media (max-width: 700px) { .footer-bottom { flex-direction: column; gap: 8px; text-align: center; } }
+</style>
+
+<!-- ═══ REFINED EDITORIAL POLISH LAYER ═══ -->
+<style>
+/* ═══════════════════════════════════════════════════════════════════
+   SARAL ARTHASHASTRA — REFINED EDITORIAL POLISH LAYER
+   "The Economist meets Stripe Press meets a private bank annual report"
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* — Refined CSS variables — */
+:root {
+  --ink: #0d1b2a;
+  --ink-soft: #1c2e4a;
+  --paper: #f4ede1;
+  --paper-2: #ebe3d4;
+  --paper-3: #faf6ed;
+  --gold: #c9a55a;
+  --gold-light: #e8c87a;
+  --gold-deep: #9c7a3c;
+  --rust: #a84432;
+  --teal: #1f4f4a;
+  --green: #2d6a4f;
+  --line: rgba(13, 27, 42, 0.10);
+  --line-soft: rgba(13, 27, 42, 0.06);
+  --shadow-sm: 0 1px 2px rgba(13, 27, 42, 0.04), 0 1px 3px rgba(13, 27, 42, 0.06);
+  --shadow-md: 0 4px 12px -2px rgba(13, 27, 42, 0.08), 0 2px 4px rgba(13, 27, 42, 0.04);
+  --shadow-lg: 0 12px 32px -8px rgba(13, 27, 42, 0.16), 0 4px 12px -2px rgba(13, 27, 42, 0.08);
+  --shadow-xl: 0 24px 60px -12px rgba(13, 27, 42, 0.22), 0 8px 20px -4px rgba(13, 27, 42, 0.10);
+  --transition: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* — Base smoothing — */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  background: var(--paper);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Subtle paper grain texture across the whole site */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: 
+    radial-gradient(circle at 15% 20%, rgba(168, 68, 50, 0.025) 0, transparent 50%),
+    radial-gradient(circle at 85% 80%, rgba(31, 79, 74, 0.025) 0, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(201, 165, 90, 0.02) 0, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* SVG noise overlay for paper texture */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: multiply;
+}
+
+/* Make sure content sits above the texture */
+header, section, footer, main, .container, .bar { position: relative; z-index: 2; }
+
+/* ═══════ TYPOGRAPHY REFINEMENT ═══════ */
+.h-title, h1, h2, h3 {
+  font-family: 'Fraunces', Georgia, serif !important;
+  font-feature-settings: 'ss01', 'ss02', 'liga', 'kern';
+  letter-spacing: -0.02em;
+}
+
+h1, .h-title {
+  font-weight: 400 !important;
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+}
+
+h2 {
+  font-weight: 500 !important;
+  font-variation-settings: 'opsz' 96;
+}
+
+.h-title em, h1 em, h2 em, h3 em {
+  font-style: italic;
+  color: var(--rust);
+  font-variation-settings: 'opsz' 144, 'SOFT' 100;
+}
+
+p, .h-sub {
+  font-feature-settings: 'kern', 'liga';
+  letter-spacing: -0.005em;
+}
+
+.eyebrow, .channel-handle, .footer-bottom {
+  font-family: 'JetBrains Mono', 'SF Mono', monospace !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase;
+  font-size: 11px !important;
+  color: var(--gold-deep);
+}
+
+/* ═══════ HEADER/NAV REFINEMENT ═══════ */
+header.bar, header.site-header {
+  background: rgba(244, 237, 225, 0.85) !important;
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--line-soft) !important;
+  transition: all 0.3s var(--transition);
+}
+
+/* ═══════ HERO REFINEMENT ═══════ */
+.hero {
+  position: relative;
+  padding: 80px 24px 100px !important;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 60px; right: 8%;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(201, 165, 90, 0.12), transparent 70%);
+  border-radius: 50%;
+  filter: blur(40px);
+  pointer-events: none;
+  animation: float 12s ease-in-out infinite;
+  z-index: 0;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 60px; left: 5%;
+  width: 280px; height: 280px;
+  background: radial-gradient(circle, rgba(168, 68, 50, 0.08), transparent 70%);
+  border-radius: 50%;
+  filter: blur(40px);
+  pointer-events: none;
+  animation: float 14s ease-in-out infinite reverse;
+  z-index: 0;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20px, -30px) scale(1.05); }
+}
+
+.hero-grid { position: relative; z-index: 1; }
+
+.h-title {
+  font-size: clamp(48px, 7vw, 88px) !important;
+  line-height: 1.02 !important;
+  margin-bottom: 28px !important;
+}
+
+.hi-line {
+  display: block;
+  font-size: 0.42em;
+  margin-top: 12px;
+  color: rgba(13, 27, 42, 0.55);
+  font-style: italic;
+  letter-spacing: 0.01em;
+}
+
+.h-sub {
+  font-size: clamp(17px, 1.6vw, 19px) !important;
+  line-height: 1.65 !important;
+  color: rgba(13, 27, 42, 0.78) !important;
+  max-width: 540px;
+  margin-bottom: 40px !important;
+}
+
+/* ═══════ BUTTONS — REFINED ═══════ */
+.btn-primary, .btn-secondary, .form-submit, .cta-btn {
+  position: relative;
+  padding: 14px 28px !important;
+  border-radius: 6px !important;
+  font-family: 'Fraunces', serif !important;
+  font-weight: 500 !important;
+  font-size: 15px !important;
+  letter-spacing: 0 !important;
+  transition: all 0.25s var(--transition) !important;
+  display: inline-flex !important;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--ink) !important;
+  color: var(--paper) !important;
+  border: 1px solid var(--ink) !important;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  background: var(--rust) !important;
+  border-color: var(--rust) !important;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-primary span, .btn-primary .arrow {
+  transition: transform 0.25s var(--transition);
+  display: inline-block;
+}
+
+.btn-primary:hover span, .btn-primary:hover .arrow {
+  transform: translateX(4px);
+}
+
+.btn-secondary {
+  background: transparent !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--line) !important;
+}
+
+.btn-secondary:hover {
+  background: var(--paper-3) !important;
+  border-color: var(--ink) !important;
+  transform: translateY(-2px);
+}
+
+/* ═══════ SECTIONS ═══════ */
+section.section, .section {
+  padding: 100px 24px !important;
+  position: relative;
+}
+
+.section-head {
+  margin-bottom: 64px;
+}
+
+.section-head h2 {
+  font-size: clamp(36px, 5vw, 56px) !important;
+  line-height: 1.05 !important;
+  font-weight: 400 !important;
+  margin-bottom: 16px !important;
+}
+
+/* ═══════ CARDS — REFINED ═══════ */
+.course, .video-card, .channel, .session-card {
+  background: var(--paper-3) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 12px !important;
+  padding: 36px !important;
+  transition: all 0.35s var(--transition) !important;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.course::before, .video-card::before, .session-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity 0.3s var(--transition);
+}
+
+.course:hover, .video-card:hover, .session-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(201, 165, 90, 0.4) !important;
+}
+
+.course:hover::before, .video-card:hover::before, .session-card:hover::before {
+  opacity: 1;
+}
+
+.channel:hover {
+  background: var(--paper-3) !important;
+  transform: translateX(4px);
+}
+
+/* ═══════ ABOUT PORTRAIT — REFINED ═══════ */
+.about-portrait {
+  position: relative;
+}
+
+.portrait-img {
+  border-radius: 16px !important;
+  box-shadow: var(--shadow-xl) !important;
+  filter: contrast(1.02) saturate(0.95);
+  transition: all 0.6s var(--transition) !important;
+}
+
+.about-portrait::before {
+  content: '';
+  position: absolute;
+  top: -16px; left: -16px;
+  width: 80px; height: 80px;
+  border-top: 2px solid var(--gold);
+  border-left: 2px solid var(--gold);
+  z-index: 1;
+  opacity: 0.6;
+}
+
+.about-portrait::after {
+  content: '';
+  position: absolute;
+  bottom: -16px; right: -16px;
+  width: 80px; height: 80px;
+  border-bottom: 2px solid var(--rust);
+  border-right: 2px solid var(--rust);
+  z-index: 1;
+  opacity: 0.6;
+}
+
+.about-portrait:hover .portrait-img {
+  transform: scale(1.02);
+  filter: contrast(1.05) saturate(1);
+}
+
+/* ═══════ PROMISE BAND ═══════ */
+.promise {
+  background: var(--ink) !important;
+  color: var(--paper) !important;
+  padding: 24px 0 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.promise-item {
+  font-family: 'Fraunces', serif;
+  font-size: 16px !important;
+  letter-spacing: -0.01em;
+  color: rgba(244, 237, 225, 0.85) !important;
+}
+
+.promise-item em {
+  color: var(--gold-light) !important;
+  font-weight: 500;
+}
+
+.promise-dot {
+  background: var(--gold) !important;
+}
+
+/* ═══════ CONTACT/FORM — REFINED ═══════ */
+.contact, section.contact {
+  background: linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%) !important;
+}
+
+.contact-form {
+  background: var(--paper-3) !important;
+  padding: 48px !important;
+  border-radius: 16px !important;
+  box-shadow: var(--shadow-md) !important;
+  border: 1px solid var(--line) !important;
+}
+
+.contact-form h3 {
+  font-size: 32px !important;
+  margin-bottom: 8px !important;
+}
+
+.form-row label {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 11px !important;
+  letter-spacing: 0.1em !important;
+  color: var(--gold-deep) !important;
+  text-transform: uppercase;
+}
+
+.form-row input, .form-row textarea, .form-row select {
+  border: 1px solid var(--line) !important;
+  border-radius: 8px !important;
+  padding: 14px 16px !important;
+  font-family: 'Fraunces', serif !important;
+  font-size: 16px !important;
+  background: white !important;
+  transition: all 0.2s var(--transition) !important;
+}
+
+.form-row input:focus, .form-row textarea:focus, .form-row select:focus {
+  border-color: var(--rust) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(168, 68, 50, 0.1) !important;
+}
+
+/* ═══════ FOOTER REFINEMENT ═══════ */
+footer {
+  background: var(--ink) !important;
+  position: relative;
+  padding: 80px 0 40px !important;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.footer-col h4 {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 11px !important;
+  letter-spacing: 0.15em !important;
+  color: var(--gold) !important;
+  text-transform: uppercase;
+  margin-bottom: 20px !important;
+}
+
+.footer-bottom em {
+  color: var(--gold-light) !important;
+}
+
+/* ═══════ REVEAL ANIMATIONS — REFINED ═══════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger child reveals */
+.reveal:nth-child(2) { transition-delay: 0.1s; }
+.reveal:nth-child(3) { transition-delay: 0.2s; }
+.reveal:nth-child(4) { transition-delay: 0.3s; }
+
+/* ═══════ TESTIMONIAL ═══════ */
+.testimonial {
+  background: var(--paper-3) !important;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 100px 24px !important;
+}
+
+.quote-mark {
+  color: var(--gold) !important;
+  opacity: 0.4;
+}
+
+/* ═══════ CONTAINER REFINEMENT ═══════ */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ═══════ SELECTION ═══════ */
+::selection {
+  background: var(--rust);
+  color: var(--paper);
+}
+
+/* ═══════ SCROLLBAR ═══════ */
+::-webkit-scrollbar { width: 12px; }
+::-webkit-scrollbar-track { background: var(--paper-2); }
+::-webkit-scrollbar-thumb { 
+  background: var(--gold-deep); 
+  border-radius: 6px;
+  border: 3px solid var(--paper-2);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--rust); }
+
+/* ═══════ FOCUS STATES ═══════ */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 2px solid var(--rust);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ═══════ MOBILE REFINEMENT ═══════ */
+@media (max-width: 768px) {
+  .hero { padding: 56px 20px 72px !important; }
+  section.section, .section { padding: 64px 20px !important; }
+  .h-title { font-size: clamp(38px, 9vw, 56px) !important; }
+  .contact-form { padding: 32px !important; }
+  .course, .video-card, .session-card { padding: 28px !important; }
+  .hero::before, .hero::after { display: none; }
+}
+
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <div class="header-row">
+      <a href="../index.html" class="brand-link">
+        <div class="brand-mark">Sa</div>
+        <div>
+          <div class="brand-name">SaralArthaShastra</div>
+          <div class="brand-sub">Article</div>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../index.html#videos">Videos</a></li>
+        <li><a href="index.html">Articles</a></li>
+        <li><a href="../tools.html">Tools</a></li>
+        <li><a href="../resources.html">Resources</a></li>
+        <li><a href="../courses.html">Courses</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<section class="article-hero">
+  <div class="container">
+    <div class="article-hero-eyebrow">Personal Finance · 12 min read</div>
+    <h1><em>EMI Explained:</em> The Math Your Bank Doesn't Show You</h1>
+    <div class="article-meta">
+      <span>📖 12 min read</span>
+      <span>📅 27 April 2026</span>
+      <span>✍ By Ajit Kumar</span>
+    </div>
+  </div>
+</section>
+
+<article class="article-body">
+
+  <p class="lede">In year 1 of a 20-year home loan, only 16% of your EMI reduces principal. The other 84% is interest. By year 15, that flips. Understanding this — and the simple actions it implies — is the difference between paying ₹54 lakh in interest and ₹40 lakh.</p>
+
+  <div class="tldr">
+    <div class="tldr-label">TL;DR</div>
+    <h3>The four EMI truths</h3>
+    <p><strong>1.</strong> EMI stays constant. Principal/interest split changes drastically over time.</p>
+    <p><strong>2.</strong> Early-year prepayments save 5-8x more than late-year prepayments.</p>
+    <p><strong>3.</strong> When prepaying, ask the bank to reduce <em>tenure</em>, not EMI. Saves 2-3x more.</p>
+    <p><strong>4.</strong> Foreclosure is FREE on floating-rate home loans. RBI banned charges in 2014.</p>
+  </div>
+
+  <h2>The <em>formula</em></h2>
+
+  <p>Every EMI calculation in India uses the same formula. Banks dress it up with calculators, sliders, and animations, but the math is identical:</p>
+
+  <p><code>EMI = P × r × (1+r)^n / ((1+r)^n − 1)</code></p>
+
+  <p>Where:</p>
+  <ul>
+    <li><strong>P</strong> = Principal (loan amount)</li>
+    <li><strong>r</strong> = Monthly interest rate (annual rate / 12 / 100)</li>
+    <li><strong>n</strong> = Total number of monthly instalments</li>
+  </ul>
+
+  <p>For a ₹50,00,000 loan at 8.5% over 20 years:</p>
+  <ul>
+    <li>P = 50,00,000</li>
+    <li>r = 8.5 / 12 / 100 = 0.00708</li>
+    <li>n = 20 × 12 = 240 months</li>
+    <li><strong>EMI = ₹43,391/month</strong></li>
+  </ul>
+
+  <p>Multiply that by 240 and you've paid ₹1,04,13,898 over the life of the loan. ₹50 lakh of that was your principal. <strong>The other ₹54.13 lakh was interest.</strong> You paid back more than double what you borrowed. This is the reality of a 20-year loan that no one says out loud at the time you sign.</p>
+
+  <h2>What changes over the <em>life of the loan</em></h2>
+
+  <p>Here's what your bank's app doesn't show you in any meaningful way: the split of every monthly EMI between principal repayment and interest payment.</p>
+
+  <div class="figure">
+    <div class="figure-header">Figure 1: Year-by-year EMI breakdown (₹50L / 8.5% / 20 yr)</div>
+    <div class="figure-body">
+      <table>
+        <thead>
+          <tr><th>Year</th><th>EMI</th><th>Principal Part</th><th>Interest Part</th><th>% to Principal</th><th>Outstanding</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>₹43,391</td><td>₹7,055</td><td>₹36,336</td><td>16%</td><td>₹49,15,463</td></tr>
+          <tr><td>5</td><td>₹43,391</td><td>₹9,876</td><td>₹33,515</td><td>23%</td><td>₹46,53,278</td></tr>
+          <tr><td>10</td><td>₹43,391</td><td>₹14,890</td><td>₹28,501</td><td>34%</td><td>₹39,72,168</td></tr>
+          <tr><td>15</td><td>₹43,391</td><td>₹22,422</td><td>₹20,969</td><td>52%</td><td>₹28,52,102</td></tr>
+          <tr><td>20</td><td>₹43,391</td><td>₹33,786</td><td>₹9,605</td><td>78%</td><td>₹0</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="figure-caption">Notice that in Year 1, every ₹43,391 EMI only reduces your principal by ₹7,055. The rest is interest. This is why outstanding balance barely moves in early years.</div>
+  </div>
+
+  <p>The reason for this asymmetry is interest is calculated on the outstanding balance every month. When the balance is ₹50 lakh (year 1), the monthly interest at 8.5% is roughly ₹35,000. Your EMI is ₹43,391. So only ~₹8,000 reduces principal. The next month, balance is ₹49.92 lakh — interest is slightly less, principal repayment is slightly more. Compounding works in slow motion.</p>
+
+  <p>By year 15, the outstanding has fallen to ~₹28 lakh. Monthly interest is ~₹20,000 instead of ₹35,000. The remaining ₹23,000 of your EMI reduces principal aggressively. The loan is finally getting paid down.</p>
+
+  <h2>The <em>prepayment</em> insight</h2>
+
+  <p>Now combine the table above with one observation: any extra rupee you pay reduces the outstanding balance immediately. From the next month onwards, your interest is calculated on a smaller balance — so a larger portion of your EMI goes to principal — so the balance falls faster — and so on.</p>
+
+  <p>This compounds dramatically over time. ₹1 lakh prepaid early acts on a high-interest balance for many years. ₹1 lakh prepaid late acts on a small balance for very few years.</p>
+
+  <div class="figure">
+    <div class="figure-header">Figure 2: Same ₹1 lakh prepayment, different timing</div>
+    <div class="figure-body">
+      <table>
+        <thead>
+          <tr><th>Prepay in...</th><th>Total Interest Saved</th><th>Tenure Reduced By</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Year 2</td><td>₹3,49,000</td><td>5 months</td></tr>
+          <tr><td>Year 5</td><td>₹2,38,000</td><td>4 months</td></tr>
+          <tr><td>Year 10</td><td>₹1,12,000</td><td>3 months</td></tr>
+          <tr><td>Year 15</td><td>₹40,000</td><td>2 months</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="figure-caption">Same ₹1 lakh, same loan. Prepaying in year 2 saves you ₹3.49 lakh. Prepaying in year 15 saves only ₹40,000. That's an 8x difference for the same money — purely because of timing.</div>
+  </div>
+
+  <div class="callout success">
+    <div class="callout-label">💡 Action</div>
+    <p>Don't wait for "a comfortable amount" to start prepaying. <strong>Every spare rupee in years 1–7 is worth 5–8x more than the same rupee in years 14–20.</strong> Even a ₹10,000 prepayment in year 2 saves ~₹35,000 in lifetime interest.</p>
+  </div>
+
+  <h2>EMI vs Tenure: the <em>silent question</em></h2>
+
+  <p>When you make a partial prepayment, your bank usually asks (or just defaults): <em>"Would you like to reduce EMI or reduce tenure?"</em> Most banks default to reducing EMI because it feels good — your monthly burden drops.</p>
+
+  <p>This is mathematically the worse choice. Here's the comparison on a ₹50L / 8.5% / 20-year loan, after prepaying ₹5 lakh at the end of year 5:</p>
+
+  <div class="figure">
+    <div class="figure-header">Figure 3: Reduce EMI vs Reduce Tenure (₹5L prepaid in year 5)</div>
+    <div class="figure-body">
+      <table>
+        <thead>
+          <tr><th>Strategy</th><th>New EMI</th><th>New Tenure</th><th>Total Interest Saved</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>No prepayment</td><td>₹43,391</td><td>20 yrs</td><td>baseline</td></tr>
+          <tr><td><strong>Reduce EMI</strong></td><td>₹38,950</td><td>20 yrs</td><td>₹6,11,000</td></tr>
+          <tr><td><strong>Reduce tenure</strong></td><td>₹43,391</td><td>16.4 yrs</td><td>₹14,02,000</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="figure-caption">Same ₹5 lakh prepayment, very different outcomes. Reducing tenure saves you ₹14 lakh — more than 2x the savings from reducing EMI.</div>
+  </div>
+
+  <p>Why the difference? When you reduce tenure, you keep paying the higher EMI for fewer years — so the loan closes faster, and you stop paying interest sooner. When you reduce EMI, you keep paying for the same 20 years, so the bank gets to charge interest for the full original tenure — just on a slightly smaller balance.</p>
+
+  <div class="callout warning">
+    <div class="callout-label">⚠ At every prepayment</div>
+    <p>Tell the bank, in writing: <strong>"Apply this prepayment to reduce tenure, not EMI."</strong> Get the revised amortization schedule. If they don't volunteer this option, ask. They are obligated to provide it.</p>
+  </div>
+
+  <h2>Three other things <em>they don't tell you</em></h2>
+
+  <h3>Foreclosure is <em>FREE</em> on floating-rate loans</h3>
+
+  <p>RBI banned all foreclosure charges and prepayment penalties on floating-rate home loans in 2014. Your bank cannot legally charge you anything to close your loan early or make partial prepayments. Some banks still try — through "documentation fees" or "processing charges." These are not legal. If you encounter resistance, ask them to show you the RBI circular permitting the charge. They cannot, because none exists.</p>
+
+  <p>Note: this applies only to <em>floating-rate</em> retail loans. Fixed-rate loans can have foreclosure charges (typically 2-4%), and corporate loans have separate rules.</p>
+
+  <h3>Tax benefits cap <em>your effective rate</em></h3>
+
+  <p>Under Section 24(b), interest paid on a home loan is deductible up to ₹2,00,000/year for a self-occupied property. Section 80C allows up to ₹1,50,000/year deduction for principal repayment. For a borrower in the 30% tax bracket, this saves ₹60,000 + ₹45,000 = ₹1,05,000/year in taxes.</p>
+
+  <p>Effectively, this lowers the real cost of your loan. On a ₹50 lakh loan, your stated 8.5% rate effectively becomes ~7.4% after tax savings (assuming you fully use the deductions). This doesn't mean don't prepay — it means home loans are not as expensive as they look.</p>
+
+  <h3>Float-rate loans don't reset <em>monthly</em></h3>
+
+  <p>Even on EBLR (External Benchmark Lending Rate) loans where rates auto-adjust to RBI repo, the reset is typically every 3 months — not monthly. On older MCLR loans, reset is every 6 or 12 months. So when RBI cuts the rate, don't expect your EMI to drop next month. Read your sanction letter — find your reset frequency. If you don't know what yours is, call the bank today.</p>
+
+  <h2>What to <em>do</em>, concretely</h2>
+
+  <ol>
+    <li><strong>This week:</strong> Pull out your loan sanction letter. Find your interest rate, MCLR/EBLR type, reset date, and current outstanding balance.</li>
+    <li><strong>This month:</strong> Run the <a href="../tools.html">EMI calculator</a> with your real numbers. See how much you've actually paid in interest vs principal so far. It's usually shocking.</li>
+    <li><strong>If on MCLR:</strong> Request conversion to EBLR. The conversion fee (₹5-15K) is recovered in months. Saves ₹2-5L over remaining tenure typically.</li>
+    <li><strong>Set up systematic prepayment:</strong> Even ₹5,000/month extra over the loan saves lakhs. Make it automatic — same day as your salary.</li>
+    <li><strong>On every windfall</strong> (bonus, FD maturity, gift): prepay. Specify "reduce tenure, not EMI."</li>
+    <li><strong>Track:</strong> Use the <a href="../resources.html">EMI Quick Reference PDF</a>. Print it. Stick it on your wall.</li>
+  </ol>
+
+  <div class="callout success">
+    <div class="callout-label">📌 The 1-page summary</div>
+    <p>EMI = constant amount, but split changes wildly over time. <strong>Years 1-7: prepay aggressively.</strong> <strong>Always reduce tenure, not EMI.</strong> <strong>Foreclosure is FREE.</strong> <strong>Convert MCLR to EBLR.</strong> Do these four things, and over a 20-year loan, you'll save ₹10-15 lakh compared to a borrower who does none of them. That's a serious return for 30 minutes of attention.</p>
+  </div>
+
+  <div class="related-block">
+    <h2>Read <em>next</em></h2>
+    <div class="related-grid">
+      <a href="repo-rate-complete-guide.html" class="related-link">
+        <div class="related-link-tag">Featured · 18 min</div>
+        <h3>The Repo Rate: Complete guide to India's most important number</h3>
+      </a>
+      <a href="../tools.html" class="related-link">
+        <div class="related-link-tag">Calculator</div>
+        <h3>Try the EMI calculator with your real numbers</h3>
+      </a>
+      <a href="../resources.html" class="related-link">
+        <div class="related-link-tag">Free PDF</div>
+        <h3>5 Hidden EMI Truths your bank won't tell you</h3>
+      </a>
+    </div>
+  </div>
+
+  <div class="cta-end">
+    <h2>Want this kind of analysis<br>for your <em>specific loan?</em></h2>
+    <p>Book a 45-minute Personal Finance Review. Bring your numbers — I'll walk you through exactly what to do, in writing.</p>
+    <a href="../consulting.html" class="btn">Book a Session</a>
+    <a href="https://youtube.com/@saralarthashastra" target="_blank" rel="noopener" class="btn btn-ghost">Watch on YouTube</a>
+  </div>
+
+</article>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>SaralArthaShastra</h3>
+        <p class="footer-tagline">Economics, simply explained — by a 15-year banker, MA Economics from BHU, UGC NET qualified.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="../index.html#about">About</a></li>
+          <li><a href="index.html">Articles</a></li>
+          <li><a href="../tools.html">Tools</a></li>
+          <li><a href="../resources.html">Resources</a></li>
+          <li><a href="../courses.html">Courses</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Connect</h3>
+        <ul>
+          <li><a href="https://youtube.com/@saralarthashastra" target="_blank">YouTube</a></li>
+          <li><a href="https://t.me/saralarthashastra" target="_blank">Telegram</a></li>
+          <li><a href="https://instagram.com/saralarthashastra" target="_blank">Instagram</a></li>
+          <li><a href="mailto:saralarthashastra@gmail.com">Email</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 SaralArthaShastra · Ajit Kumar</span>
+      <span>Free to share with attribution.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

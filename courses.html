@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Three structured programs to master Economics, Banking, and RBI prep — by a 15-year banker.">
+<title>Courses — SaralArthaShastra</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' fill='%230d1b2a'/%3E%3Ccircle cx='96' cy='96' r='86' fill='none' stroke='%23c9a55a' stroke-width='3'/%3E%3Ctext x='96' y='128' font-family='Georgia,serif' font-size='100' font-weight='bold' font-style='italic' fill='%23c9a55a' text-anchor='middle'%3ESa%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root { --ink: #0d1b2a; --ink-2: #1c2e4a; --paper: #f4ede1; --paper-2: #ebe3d4; --paper-3: #faf6ed; --gold: #c9a55a; --gold-light: #e8c87a; --gold-deep: #9c7a3c; --rust: #a84432; --teal: #1f4f4a; --green: #2d6a4f; --line: rgba(13, 27, 42, 0.12); --shadow: 0 8px 30px -8px rgba(13, 27, 42, 0.25); }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { background: var(--paper); color: var(--ink); font-family: 'Fraunces', Georgia, serif; -webkit-font-smoothing: antialiased; font-size: 16px; line-height: 1.6; }
+a { color: var(--rust); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.site-header { background: var(--ink); color: var(--paper); padding: 18px 0; border-bottom: 2px solid var(--gold); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(13, 27, 42, 0.1); }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.header-row { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.brand-link { display: flex; align-items: center; gap: 12px; color: var(--paper); text-decoration: none; }
+.brand-mark { width: 38px; height: 38px; border-radius: 50%; background: var(--ink); border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; font-style: italic; font-weight: 600; font-size: 18px; color: var(--gold); flex-shrink: 0; }
+.brand-text { display: flex; flex-direction: column; line-height: 1.1; }
+.brand-name { font-size: 16px; font-weight: 600; font-family: 'Fraunces', serif; letter-spacing: -0.3px; }
+.brand-sub { font-size: 10px; font-family: 'JetBrains Mono', monospace; color: var(--gold); letter-spacing: 1.5px; text-transform: uppercase; }
+.nav-links { display: flex; gap: 24px; list-style: none; }
+.nav-links a { color: var(--paper); font-size: 14px; font-weight: 500; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.5px; }
+.nav-links a:hover { color: var(--gold); text-decoration: none; }
+@media (max-width: 700px) { .nav-links { display: none; } }
+
+.page-hero { background: linear-gradient(135deg, var(--paper-3) 0%, var(--paper-2) 100%); padding: 60px 0 50px; border-bottom: 1px solid var(--line); }
+.page-hero-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--gold-deep); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+.page-hero h1 { font-size: clamp(36px, 5vw, 56px); font-weight: 500; letter-spacing: -1.2px; line-height: 1.05; margin-bottom: 16px; font-variation-settings: "opsz" 144; }
+.page-hero h1 em { font-style: italic; color: var(--rust); font-weight: 400; }
+.page-hero .lede { font-size: 17px; color: rgba(13, 27, 42, 0.7); max-width: 640px; line-height: 1.55; font-weight: 400; }
+
+/* HONESTY BANNER */
+.honest-banner {
+  background: rgba(201, 165, 90, 0.15);
+  border: 1px solid var(--gold);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 30px 0 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.honest-banner-icon { font-size: 22px; line-height: 1; flex-shrink: 0; }
+.honest-banner strong { color: var(--rust); font-weight: 600; }
+
+/* COURSE CARDS */
+.course-card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 0;
+  margin-bottom: 32px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 0;
+  transition: all 0.25s ease;
+}
+.course-card:hover { box-shadow: var(--shadow); }
+
+@media (max-width: 850px) {
+  .course-card { grid-template-columns: 1fr; }
+}
+
+.course-content {
+  padding: 36px;
+}
+
+.course-tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  background: var(--paper-2);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+
+.course-tag.popular { background: var(--rust); color: white; }
+.course-tag.flagship { background: var(--green); color: white; }
+
+.course-title {
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.7px;
+  margin-bottom: 8px;
+  line-height: 1.1;
+}
+.course-title em { font-style: italic; color: var(--rust); }
+
+.course-tagline {
+  font-style: italic;
+  color: var(--gold-deep);
+  font-size: 16px;
+  margin-bottom: 18px;
+}
+
+.course-desc {
+  font-size: 14px;
+  color: rgba(13, 27, 42, 0.7);
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+
+.course-feature-list {
+  list-style: none;
+  margin-bottom: 22px;
+}
+.course-feature-list li {
+  font-size: 13px;
+  padding: 7px 0 7px 26px;
+  position: relative;
+  color: var(--ink);
+  line-height: 1.5;
+}
+.course-feature-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.course-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: rgba(13, 27, 42, 0.55);
+  letter-spacing: 0.3px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.course-side {
+  background: linear-gradient(135deg, var(--ink) 0%, var(--ink-2) 100%);
+  color: var(--paper);
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.course-side::before {
+  content: "";
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 165, 90, 0.18) 0%, transparent 70%);
+}
+
+.price-block {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 24px;
+}
+
+.price-was {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: rgba(244, 237, 225, 0.5);
+  text-decoration: line-through;
+  margin-bottom: 4px;
+}
+
+.price-now {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--gold-light);
+  letter-spacing: -1.5px;
+  line-height: 1;
+  margin-bottom: 6px;
+  font-variant-numeric: tabular-nums;
+}
+
+.price-now em {
+  font-size: 18px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--gold);
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.price-discount {
+  display: inline-flex;
+  align-items: center;
+  background: var(--rust);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.5px;
+}
+
+.launch-info {
+  position: relative;
+  z-index: 1;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--gold);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.btn-side {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  background: var(--rust);
+  color: white;
+  padding: 14px 24px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-family: 'Fraunces', serif;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  transition: all 0.2s;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+.btn-side:hover { background: #c0594a; text-decoration: none; }
+
+.btn-side-ghost {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold-light);
+}
+.btn-side-ghost:hover { background: var(--gold); color: var(--ink); }
+
+.note-side {
+  position: relative;
+  z-index: 1;
+  font-size: 11px;
+  color: rgba(244, 237, 225, 0.5);
+  font-style: italic;
+  text-align: center;
+  margin-top: 8px;
+  line-height: 1.4;
+}
+
+/* WAITLIST FORM */
+.waitlist-section {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 60px 40px;
+  border-radius: 18px;
+  margin: 60px 0 80px;
+}
+.waitlist-section h2 {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 500;
+  letter-spacing: -0.8px;
+  margin-bottom: 14px;
+  text-align: center;
+}
+.waitlist-section h2 em { font-style: italic; color: var(--gold-light); }
+.waitlist-section p { font-size: 15px; color: rgba(244, 237, 225, 0.7); margin-bottom: 24px; max-width: 540px; margin-left: auto; margin-right: auto; text-align: center; line-height: 1.5; }
+
+.waitlist-form {
+  max-width: 480px;
+  margin: 0 auto;
+  display: grid;
+  gap: 14px;
+}
+
+.waitlist-form input,
+.waitlist-form select {
+  padding: 14px 18px;
+  border: 1px solid rgba(244, 237, 225, 0.2);
+  border-radius: 10px;
+  font-family: 'Fraunces', serif;
+  font-size: 15px;
+  background: rgba(244, 237, 225, 0.08);
+  color: var(--paper);
+  outline: none;
+  transition: all 0.2s;
+}
+
+.waitlist-form input::placeholder { color: rgba(244, 237, 225, 0.4); }
+
+.waitlist-form input:focus,
+.waitlist-form select:focus {
+  border-color: var(--gold);
+  background: rgba(244, 237, 225, 0.12);
+}
+
+.waitlist-form select { color: var(--paper); }
+
+.waitlist-form button {
+  background: var(--rust);
+  color: white;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Fraunces', serif;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.waitlist-form button:hover { background: #c0594a; }
+
+.form-note {
+  text-align: center;
+  font-size: 12px;
+  color: rgba(244, 237, 225, 0.5);
+  margin-top: 14px;
+  font-style: italic;
+}
+
+/* FOOTER */
+.site-footer { background: var(--ink); color: var(--paper); padding: 50px 0 30px; margin-top: 0; border-top: 2px solid var(--gold); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 30px; }
+@media (max-width: 700px) { .footer-grid { grid-template-columns: 1fr; gap: 28px; } }
+.footer-col h3 { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; font-weight: 600; }
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 8px; font-size: 14px; }
+.footer-col a { color: rgba(244, 237, 225, 0.7); }
+.footer-col a:hover { color: var(--gold); text-decoration: none; }
+.footer-tagline { font-style: italic; color: rgba(244, 237, 225, 0.6); font-size: 14px; margin-top: 8px; max-width: 320px; }
+.footer-bottom { padding-top: 24px; border-top: 1px solid rgba(244, 237, 225, 0.1); display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: rgba(244, 237, 225, 0.5); font-family: 'JetBrains Mono', monospace; letter-spacing: 0.5px; }
+@media (max-width: 700px) { .footer-bottom { flex-direction: column; gap: 8px; text-align: center; } }
+</style>
+
+<!-- Calendly popup widget assets -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+<!-- ═══ REFINED EDITORIAL POLISH LAYER ═══ -->
+<style>
+/* ═══════════════════════════════════════════════════════════════════
+   SARAL ARTHASHASTRA — REFINED EDITORIAL POLISH LAYER
+   "The Economist meets Stripe Press meets a private bank annual report"
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* — Refined CSS variables — */
+:root {
+  --ink: #0d1b2a;
+  --ink-soft: #1c2e4a;
+  --paper: #f4ede1;
+  --paper-2: #ebe3d4;
+  --paper-3: #faf6ed;
+  --gold: #c9a55a;
+  --gold-light: #e8c87a;
+  --gold-deep: #9c7a3c;
+  --rust: #a84432;
+  --teal: #1f4f4a;
+  --green: #2d6a4f;
+  --line: rgba(13, 27, 42, 0.10);
+  --line-soft: rgba(13, 27, 42, 0.06);
+  --shadow-sm: 0 1px 2px rgba(13, 27, 42, 0.04), 0 1px 3px rgba(13, 27, 42, 0.06);
+  --shadow-md: 0 4px 12px -2px rgba(13, 27, 42, 0.08), 0 2px 4px rgba(13, 27, 42, 0.04);
+  --shadow-lg: 0 12px 32px -8px rgba(13, 27, 42, 0.16), 0 4px 12px -2px rgba(13, 27, 42, 0.08);
+  --shadow-xl: 0 24px 60px -12px rgba(13, 27, 42, 0.22), 0 8px 20px -4px rgba(13, 27, 42, 0.10);
+  --transition: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* — Base smoothing — */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  background: var(--paper);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Subtle paper grain texture across the whole site */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: 
+    radial-gradient(circle at 15% 20%, rgba(168, 68, 50, 0.025) 0, transparent 50%),
+    radial-gradient(circle at 85% 80%, rgba(31, 79, 74, 0.025) 0, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(201, 165, 90, 0.02) 0, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* SVG noise overlay for paper texture */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: multiply;
+}
+
+/* Make sure content sits above the texture */
+header, section, footer, main, .container, .bar { position: relative; z-index: 2; }
+
+/* ═══════ TYPOGRAPHY REFINEMENT ═══════ */
+.h-title, h1, h2, h3 {
+  font-family: 'Fraunces', Georgia, serif !important;
+  font-feature-settings: 'ss01', 'ss02', 'liga', 'kern';
+  letter-spacing: -0.02em;
+}
+
+h1, .h-title {
+  font-weight: 400 !important;
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+}
+
+h2 {
+  font-weight: 500 !important;
+  font-variation-settings: 'opsz' 96;
+}
+
+.h-title em, h1 em, h2 em, h3 em {
+  font-style: italic;
+  color: var(--rust);
+  font-variation-settings: 'opsz' 144, 'SOFT' 100;
+}
+
+p, .h-sub {
+  font-feature-settings: 'kern', 'liga';
+  letter-spacing: -0.005em;
+}
+
+.eyebrow, .channel-handle, .footer-bottom {
+  font-family: 'JetBrains Mono', 'SF Mono', monospace !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase;
+  font-size: 11px !important;
+  color: var(--gold-deep);
+}
+
+/* ═══════ HEADER/NAV REFINEMENT ═══════ */
+header.bar, header.site-header {
+  background: rgba(244, 237, 225, 0.85) !important;
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--line-soft) !important;
+  transition: all 0.3s var(--transition);
+}
+
+/* ═══════ HERO REFINEMENT ═══════ */
+.hero {
+  position: relative;
+  padding: 80px 24px 100px !important;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 60px; right: 8%;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(201, 165, 90, 0.12), transparent 70%);
+  border-radius: 50%;
+  filter: blur(40px);
+  pointer-events: none;
+  animation: float 12s ease-in-out infinite;
+  z-index: 0;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 60px; left: 5%;
+  width: 280px; height: 280px;
+  background: radial-gradient(circle, rgba(168, 68, 50, 0.08), transparent 70%);
+  border-radius: 50%;
+  filter: blur(40px);
+  pointer-events: none;
+  animation: float 14s ease-in-out infinite reverse;
+  z-index: 0;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20px, -30px) scale(1.05); }
+}
+
+.hero-grid { position: relative; z-index: 1; }
+
+.h-title {
+  font-size: clamp(48px, 7vw, 88px) !important;
+  line-height: 1.02 !important;
+  margin-bottom: 28px !important;
+}
+
+.hi-line {
+  display: block;
+  font-size: 0.42em;
+  margin-top: 12px;
+  color: rgba(13, 27, 42, 0.55);
+  font-style: italic;
+  letter-spacing: 0.01em;
+}
+
+.h-sub {
+  font-size: clamp(17px, 1.6vw, 19px) !important;
+  line-height: 1.65 !important;
+  color: rgba(13, 27, 42, 0.78) !important;
+  max-width: 540px;
+  margin-bottom: 40px !important;
+}
+
+/* ═══════ BUTTONS — REFINED ═══════ */
+.btn-primary, .btn-secondary, .form-submit, .cta-btn {
+  position: relative;
+  padding: 14px 28px !important;
+  border-radius: 6px !important;
+  font-family: 'Fraunces', serif !important;
+  font-weight: 500 !important;
+  font-size: 15px !important;
+  letter-spacing: 0 !important;
+  transition: all 0.25s var(--transition) !important;
+  display: inline-flex !important;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--ink) !important;
+  color: var(--paper) !important;
+  border: 1px solid var(--ink) !important;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  background: var(--rust) !important;
+  border-color: var(--rust) !important;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-primary span, .btn-primary .arrow {
+  transition: transform 0.25s var(--transition);
+  display: inline-block;
+}
+
+.btn-primary:hover span, .btn-primary:hover .arrow {
+  transform: translateX(4px);
+}
+
+.btn-secondary {
+  background: transparent !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--line) !important;
+}
+
+.btn-secondary:hover {
+  background: var(--paper-3) !important;
+  border-color: var(--ink) !important;
+  transform: translateY(-2px);
+}
+
+/* ═══════ SECTIONS ═══════ */
+section.section, .section {
+  padding: 100px 24px !important;
+  position: relative;
+}
+
+.section-head {
+  margin-bottom: 64px;
+}
+
+.section-head h2 {
+  font-size: clamp(36px, 5vw, 56px) !important;
+  line-height: 1.05 !important;
+  font-weight: 400 !important;
+  margin-bottom: 16px !important;
+}
+
+/* ═══════ CARDS — REFINED ═══════ */
+.course, .video-card, .channel, .session-card {
+  background: var(--paper-3) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 12px !important;
+  padding: 36px !important;
+  transition: all 0.35s var(--transition) !important;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.course::before, .video-card::before, .session-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity 0.3s var(--transition);
+}
+
+.course:hover, .video-card:hover, .session-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(201, 165, 90, 0.4) !important;
+}
+
+.course:hover::before, .video-card:hover::before, .session-card:hover::before {
+  opacity: 1;
+}
+
+.channel:hover {
+  background: var(--paper-3) !important;
+  transform: translateX(4px);
+}
+
+/* ═══════ ABOUT PORTRAIT — REFINED ═══════ */
+.about-portrait {
+  position: relative;
+}
+
+.portrait-img {
+  border-radius: 16px !important;
+  box-shadow: var(--shadow-xl) !important;
+  filter: contrast(1.02) saturate(0.95);
+  transition: all 0.6s var(--transition) !important;
+}
+
+.about-portrait::before {
+  content: '';
+  position: absolute;
+  top: -16px; left: -16px;
+  width: 80px; height: 80px;
+  border-top: 2px solid var(--gold);
+  border-left: 2px solid var(--gold);
+  z-index: 1;
+  opacity: 0.6;
+}
+
+.about-portrait::after {
+  content: '';
+  position: absolute;
+  bottom: -16px; right: -16px;
+  width: 80px; height: 80px;
+  border-bottom: 2px solid var(--rust);
+  border-right: 2px solid var(--rust);
+  z-index: 1;
+  opacity: 0.6;
+}
+
+.about-portrait:hover .portrait-img {
+  transform: scale(1.02);
+  filter: contrast(1.05) saturate(1);
+}
+
+/* ═══════ PROMISE BAND ═══════ */
+.promise {
+  background: var(--ink) !important;
+  color: var(--paper) !important;
+  padding: 24px 0 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.promise-item {
+  font-family: 'Fraunces', serif;
+  font-size: 16px !important;
+  letter-spacing: -0.01em;
+  color: rgba(244, 237, 225, 0.85) !important;
+}
+
+.promise-item em {
+  color: var(--gold-light) !important;
+  font-weight: 500;
+}
+
+.promise-dot {
+  background: var(--gold) !important;
+}
+
+/* ═══════ CONTACT/FORM — REFINED ═══════ */
+.contact, section.contact {
+  background: linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%) !important;
+}
+
+.contact-form {
+  background: var(--paper-3) !important;
+  padding: 48px !important;
+  border-radius: 16px !important;
+  box-shadow: var(--shadow-md) !important;
+  border: 1px solid var(--line) !important;
+}
+
+.contact-form h3 {
+  font-size: 32px !important;
+  margin-bottom: 8px !important;
+}
+
+.form-row label {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 11px !important;
+  letter-spacing: 0.1em !important;
+  color: var(--gold-deep) !important;
+  text-transform: uppercase;
+}
+
+.form-row input, .form-row textarea, .form-row select {
+  border: 1px solid var(--line) !important;
+  border-radius: 8px !important;
+  padding: 14px 16px !important;
+  font-family: 'Fraunces', serif !important;
+  font-size: 16px !important;
+  background: white !important;
+  transition: all 0.2s var(--transition) !important;
+}
+
+.form-row input:focus, .form-row textarea:focus, .form-row select:focus {
+  border-color: var(--rust) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(168, 68, 50, 0.1) !important;
+}
+
+/* ═══════ FOOTER REFINEMENT ═══════ */
+footer {
+  background: var(--ink) !important;
+  position: relative;
+  padding: 80px 0 40px !important;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.footer-col h4 {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 11px !important;
+  letter-spacing: 0.15em !important;
+  color: var(--gold) !important;
+  text-transform: uppercase;
+  margin-bottom: 20px !important;
+}
+
+.footer-bottom em {
+  color: var(--gold-light) !important;
+}
+
+/* ═══════ REVEAL ANIMATIONS — REFINED ═══════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger child reveals */
+.reveal:nth-child(2) { transition-delay: 0.1s; }
+.reveal:nth-child(3) { transition-delay: 0.2s; }
+.reveal:nth-child(4) { transition-delay: 0.3s; }
+
+/* ═══════ TESTIMONIAL ═══════ */
+.testimonial {
+  background: var(--paper-3) !important;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 100px 24px !important;
+}
+
+.quote-mark {
+  color: var(--gold) !important;
+  opacity: 0.4;
+}
+
+/* ═══════ CONTAINER REFINEMENT ═══════ */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ═══════ SELECTION ═══════ */
+::selection {
+  background: var(--rust);
+  color: var(--paper);
+}
+
+/* ═══════ SCROLLBAR ═══════ */
+::-webkit-scrollbar { width: 12px; }
+::-webkit-scrollbar-track { background: var(--paper-2); }
+::-webkit-scrollbar-thumb { 
+  background: var(--gold-deep); 
+  border-radius: 6px;
+  border: 3px solid var(--paper-2);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--rust); }
+
+/* ═══════ FOCUS STATES ═══════ */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 2px solid var(--rust);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ═══════ MOBILE REFINEMENT ═══════ */
+@media (max-width: 768px) {
+  .hero { padding: 56px 20px 72px !important; }
+  section.section, .section { padding: 64px 20px !important; }
+  .h-title { font-size: clamp(38px, 9vw, 56px) !important; }
+  .contact-form { padding: 32px !important; }
+  .course, .video-card, .session-card { padding: 28px !important; }
+  .hero::before, .hero::after { display: none; }
+}
+
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <div class="header-row">
+      <a href="index.html" class="brand-link">
+        <div class="brand-mark">Sa</div>
+        <div class="brand-text">
+          <div class="brand-name">SaralArthaShastra</div>
+          <div class="brand-sub">Courses</div>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#videos">Videos</a></li>
+        <li><a href="articles/index.html">Articles</a></li>
+        <li><a href="tools.html">Tools</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-eyebrow">Three Programs · One Path</div>
+    <h1>Courses for those<br>ready to <em>master it.</em></h1>
+    <p class="lede">Three structured programs designed to take you from Economics-curious beginner to confident professional. Built around what you actually need to learn — not what looks good on a course page.</p>
+  </div>
+
+  <div class="container">
+    <div class="honest-banner">
+      <div class="honest-banner-icon">✋</div>
+      <div>
+        <strong>Honest update:</strong> These courses launch in <strong>August 2026</strong>. Until then, watch the free YouTube content and download the <a href="resources.html">free PDFs</a>. Join the waitlist below to lock in <strong>50% Founding Member pricing</strong> when the courses go live. No upfront payment.
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- COURSE 1: ECONOMICS FOUNDATIONS -->
+  <article class="course-card" id="economics-foundations">
+    <div class="course-content">
+      <span class="course-tag popular">⭐ Most Popular</span>
+      <h2 class="course-title">Economics <em>Foundations</em></h2>
+      <p class="course-tagline">From "I don't get the news" to "I see the patterns" — in 12 weeks.</p>
+      <p class="course-desc">A complete grounding in modern economics for working professionals, college students, and curious adults. Built around real Indian examples — RBI decisions, GST rollout, demonetisation, COVID stimulus. By the end, you'll read business news with new eyes and confidently discuss macro topics with anyone.</p>
+      <ul class="course-feature-list">
+        <li>12 weekly modules · ~3 hours of video each</li>
+        <li>Topics: micro/macro fundamentals, money &amp; banking, RBI mechanics, fiscal policy, inflation, growth theory</li>
+        <li>Each module: video lecture + reading PDF + quiz + 1 case study</li>
+        <li>Weekly live Q&amp;A on Zoom (1.5 hrs · recorded if missed)</li>
+        <li>Private Telegram community with all batchmates</li>
+        <li>Certificate of completion + 1-on-1 review call</li>
+      </ul>
+      <div class="course-meta">
+        <span>⏱ 12 weeks</span>
+        <span>📺 36 hrs of video</span>
+        <span>📚 12 PDFs</span>
+        <span>👥 Live Q&amp;A weekly</span>
+      </div>
+    </div>
+    <div class="course-side">
+      <div class="launch-info">📅 Launches August 2026</div>
+      <div class="price-block">
+        <div class="price-was">Regular price ₹14,999</div>
+        <div class="price-now">₹7,499 <em>founder</em></div>
+        <span class="price-discount">50% OFF for waitlist members</span>
+      </div>
+      <a href="#waitlist" class="btn-side">Join Waitlist (Free) →</a>
+      <a href="https://youtu.be/7zdx1j6xEuk" target="_blank" rel="noopener" class="btn-side btn-side-ghost">Watch sample lesson</a>
+      <p class="note-side">No payment now. Lock in founder pricing. Pay only when course goes live.</p>
+    </div>
+  </article>
+
+  <!-- COURSE 2: BANKING DEEP DIVE -->
+  <article class="course-card" id="banking-deep-dive">
+    <div class="course-content">
+      <span class="course-tag flagship">🏆 Flagship</span>
+      <h2 class="course-title">Banking <em>Deep Dive</em></h2>
+      <p class="course-tagline">15 years inside a PSB, condensed into 8 weeks for you.</p>
+      <p class="course-desc">The course I wish existed when I joined banking. Everything they don't teach in MBA — how a bank actually works, how to read a balance sheet, how RBI regulates capital, what NPAs really mean, how loans are priced. Designed for bank employees seeking promotion, MBA finance students, banking aspirants, and curious finance professionals.</p>
+      <ul class="course-feature-list">
+        <li>8 intensive modules · 4-5 hours each</li>
+        <li>Topics: bank balance sheets, ALM, capital adequacy, NPAs, loan pricing (MCLR, EBLR), risk management, RBI regulations, digital banking</li>
+        <li>Real bank case studies (anonymised actual cases I worked on)</li>
+        <li>Bi-weekly live Q&amp;A + monthly guest banker session</li>
+        <li>Spreadsheet templates: ALM model, NPA classification, MCLR calculator</li>
+        <li>Certificate + LinkedIn endorsement + 30-min career consultation</li>
+      </ul>
+      <div class="course-meta">
+        <span>⏱ 8 weeks</span>
+        <span>📺 36 hrs of video</span>
+        <span>💼 Real bank cases</span>
+        <span>📊 Excel models</span>
+      </div>
+    </div>
+    <div class="course-side">
+      <div class="launch-info">📅 Launches October 2026</div>
+      <div class="price-block">
+        <div class="price-was">Regular price ₹24,999</div>
+        <div class="price-now">₹12,499 <em>founder</em></div>
+        <span class="price-discount">50% OFF for waitlist members</span>
+      </div>
+      <a href="#waitlist" class="btn-side">Join Waitlist (Free) →</a>
+      <a href="consulting.html" class="btn-side btn-side-ghost">1-on-1 banking session</a>
+      <p class="note-side">EMI option available at launch. Refundable within 14 days, no questions asked.</p>
+    </div>
+  </article>
+
+  <!-- COURSE 3: RBI GRADE B PREP -->
+  <article class="course-card" id="rbi-grade-b">
+    <div class="course-content">
+      <span class="course-tag">Specialised</span>
+      <h2 class="course-title">RBI Grade B <em>Prep</em></h2>
+      <p class="course-tagline">From a banker who studied for it himself — and helped colleagues clear it.</p>
+      <p class="course-desc">Focused preparation for RBI Grade B Officer Phase II — the Economic and Social Issues paper, ESI plus Finance &amp; Management. I've personally cleared the financial sections, mentored colleagues who passed, and know exactly which topics return year after year. No fluff — only what RBI actually asks.</p>
+      <ul class="course-feature-list">
+        <li>16-week intensive program · 6-8 hrs/week</li>
+        <li>Phase I + Phase II coverage with separate modules</li>
+        <li>Topic-wise mock tests + 8 full-length mocks</li>
+        <li>Weekly live problem-solving + doubt-clearing sessions</li>
+        <li>15 years of previous papers analysed: which topics matter, which don't</li>
+        <li>Interview prep: panel-style mock interviews with feedback</li>
+      </ul>
+      <div class="course-meta">
+        <span>⏱ 16 weeks</span>
+        <span>📺 80+ hrs of content</span>
+        <span>📝 8 mocks</span>
+        <span>🎤 Mock interviews</span>
+      </div>
+    </div>
+    <div class="course-side">
+      <div class="launch-info">📅 Launches January 2027</div>
+      <div class="price-block">
+        <div class="price-was">Regular price ₹39,999</div>
+        <div class="price-now">₹19,999 <em>founder</em></div>
+        <span class="price-discount">50% OFF for waitlist members</span>
+      </div>
+      <a href="#waitlist" class="btn-side">Join Waitlist (Free) →</a>
+      <a href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/saralarthashastra/15min?hide_gdpr_banner=1&primary_color=a84432'});return false;" class="btn-side btn-side-ghost">📅 Free 15-min consultation</a>
+      <p class="note-side">Limited to 50 seats per cohort. Founder pricing also includes a year of post-course mentorship.</p>
+    </div>
+  </article>
+
+  <!-- WAITLIST FORM -->
+  <div class="waitlist-section" id="waitlist">
+    <h2>Lock in 50% off — <em>before launch.</em></h2>
+    <p>Tell me which course you want, and you'll get the launch announcement first plus founder pricing. No payment now, no spam, instant access at launch.</p>
+
+    <form class="waitlist-form" action="https://api.web3forms.com/submit" method="POST">
+      <!-- IMPORTANT: Replace YOUR_ACCESS_KEY with your real Web3Forms key (free, 30 sec signup at web3forms.com) -->
+      <input type="hidden" name="access_key" value="27c7fd46-67b4-43c1-99b4-e85a03032b9f">
+      <input type="hidden" name="subject" value="🎯 New Course Waitlist Signup">
+      <input type="hidden" name="from_name" value="SaralArthaShastra Waitlist">
+      <input type="hidden" name="redirect" value="https://www.saralarthashastra.com/thank-you.html">
+      <!-- Honeypot for spam prevention -->
+      <input type="checkbox" name="botcheck" style="display:none">
+
+      <input type="text" name="name" placeholder="Your name" required>
+      <input type="email" name="email" placeholder="Your email" required>
+      <input type="tel" name="phone" placeholder="WhatsApp number (optional)">
+      <select name="interested_course" required>
+        <option value="">Which course interests you?</option>
+        <option value="Economics Foundations">Economics Foundations (₹7,499 founder price)</option>
+        <option value="Banking Deep Dive">Banking Deep Dive (₹12,499 founder price)</option>
+        <option value="RBI Grade B Prep">RBI Grade B Prep (₹19,999 founder price)</option>
+        <option value="All three">All three (let's talk bundle pricing)</option>
+        <option value="Not sure yet">Not sure yet — keep me informed</option>
+      </select>
+      <button type="submit">Join Waitlist →</button>
+    </form>
+
+    <p class="form-note">Your email is for course updates only. Never shared. Unsubscribe anytime.</p>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>SaralArthaShastra</h3>
+        <p class="footer-tagline">Economics, simply explained — by a 15-year banker, MA Economics from BHU, UGC NET qualified.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="articles/index.html">Articles</a></li>
+          <li><a href="tools.html">Tools</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="courses.html">Courses</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Connect</h3>
+        <ul>
+          <li><a href="https://youtube.com/@saralarthashastra" target="_blank">YouTube</a></li>
+          <li><a href="https://t.me/saralarthashastra" target="_blank">Telegram</a></li>
+          <li><a href="https://instagram.com/saralarthashastra" target="_blank">Instagram</a></li>
+          <li><a href="mailto:saralarthashastra@gmail.com">Email</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 SaralArthaShastra · Ajit Kumar</span>
+      <span>All courses include 14-day money-back guarantee.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
