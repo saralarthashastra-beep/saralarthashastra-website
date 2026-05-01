@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Free downloadable PDF resources on Repo Rate, EMI math, and personal finance — by SaralArthaShastra.">
+<title>Free Resources — SaralArthaShastra</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' fill='%230d1b2a'/%3E%3Ccircle cx='96' cy='96' r='86' fill='none' stroke='%23c9a55a' stroke-width='3'/%3E%3Ctext x='96' y='128' font-family='Georgia,serif' font-size='100' font-weight='bold' font-style='italic' fill='%23c9a55a' text-anchor='middle'%3ESa%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0d1b2a; --ink-2: #1c2e4a; --paper: #f4ede1; --paper-2: #ebe3d4; --paper-3: #faf6ed;
+  --gold: #c9a55a; --gold-light: #e8c87a; --gold-deep: #9c7a3c; --rust: #a84432;
+  --line: rgba(13, 27, 42, 0.12); --shadow: 0 8px 30px -8px rgba(13, 27, 42, 0.25);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { background: var(--paper); color: var(--ink); font-family: 'Fraunces', Georgia, serif; -webkit-font-smoothing: antialiased; font-size: 16px; line-height: 1.6; }
+a { color: var(--rust); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.site-header { background: var(--ink); color: var(--paper); padding: 18px 0; border-bottom: 2px solid var(--gold); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(13, 27, 42, 0.1); }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.header-row { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.brand-link { display: flex; align-items: center; gap: 12px; color: var(--paper); text-decoration: none; }
+.brand-mark { width: 38px; height: 38px; border-radius: 50%; background: var(--ink); border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; font-style: italic; font-weight: 600; font-size: 18px; color: var(--gold); flex-shrink: 0; }
+.brand-text { display: flex; flex-direction: column; line-height: 1.1; }
+.brand-name { font-size: 16px; font-weight: 600; font-family: 'Fraunces', serif; letter-spacing: -0.3px; }
+.brand-sub { font-size: 10px; font-family: 'JetBrains Mono', monospace; color: var(--gold); letter-spacing: 1.5px; text-transform: uppercase; }
+.nav-links { display: flex; gap: 24px; list-style: none; }
+.nav-links a { color: var(--paper); font-size: 14px; font-weight: 500; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.5px; }
+.nav-links a:hover { color: var(--gold); text-decoration: none; }
+@media (max-width: 700px) { .nav-links { display: none; } }
+.page-hero { background: linear-gradient(135deg, var(--paper-3) 0%, var(--paper-2) 100%); padding: 60px 0 50px; border-bottom: 1px solid var(--line); }
+.page-hero-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--gold-deep); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+.page-hero h1 { font-size: clamp(36px, 5vw, 56px); font-weight: 500; letter-spacing: -1.2px; line-height: 1.05; margin-bottom: 16px; font-variation-settings: "opsz" 144; }
+.page-hero h1 em { font-style: italic; color: var(--rust); font-weight: 400; }
+.page-hero .lede { font-size: 17px; color: rgba(13, 27, 42, 0.7); max-width: 640px; line-height: 1.55; font-weight: 400; }
+
+/* RESOURCE CARDS */
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  margin: 60px 0;
+}
+
+.resource-card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.resource-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.resource-card::before {
+  content: "";
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 140px; height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 165, 90, 0.12) 0%, transparent 70%);
+}
+
+.resource-icon {
+  font-size: 38px;
+  line-height: 1;
+  margin-bottom: 18px;
+  position: relative;
+  z-index: 1;
+}
+
+.resource-tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  background: var(--paper-2);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+
+.resource-tag.featured { background: var(--rust); color: white; }
+
+.resource-title {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+  margin-bottom: 10px;
+  line-height: 1.25;
+  position: relative;
+  z-index: 1;
+}
+
+.resource-title em { font-style: italic; color: var(--rust); }
+
+.resource-desc {
+  font-size: 14px;
+  color: rgba(13, 27, 42, 0.65);
+  line-height: 1.55;
+  margin-bottom: 16px;
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.resource-meta {
+  display: flex;
+  gap: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: rgba(13, 27, 42, 0.5);
+  letter-spacing: 0.5px;
+  margin-bottom: 18px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  z-index: 1;
+}
+
+.resource-meta-item { display: flex; align-items: center; gap: 4px; }
+
+.resource-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 12px 20px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Fraunces', serif;
+  transition: all 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+.resource-cta:hover { background: var(--rust); text-decoration: none; }
+.resource-cta.featured { background: var(--rust); }
+.resource-cta.featured:hover { background: #c0594a; }
+
+/* CTA BLOCK */
+.cta-block { background: var(--ink); color: var(--paper); padding: 60px 40px; border-radius: 18px; text-align: center; margin: 80px 0; position: relative; overflow: hidden; }
+.cta-block::before { content: ""; position: absolute; top: -100px; right: -100px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(201, 165, 90, 0.15) 0%, transparent 70%); }
+.cta-block h2 { font-size: clamp(28px, 4vw, 42px); font-weight: 500; letter-spacing: -0.8px; margin-bottom: 14px; }
+.cta-block h2 em { font-style: italic; color: var(--gold-light); }
+.cta-block p { font-size: 16px; color: rgba(244, 237, 225, 0.7); margin-bottom: 28px; max-width: 540px; margin-left: auto; margin-right: auto; }
+.btn { display: inline-flex; align-items: center; gap: 8px; background: var(--rust); color: white; padding: 14px 28px; border-radius: 999px; font-family: 'Fraunces', serif; font-size: 16px; font-weight: 500; text-decoration: none; transition: all 0.2s; border: none; cursor: pointer; }
+.btn:hover { background: #c0594a; transform: translateY(-1px); text-decoration: none; }
+.btn-ghost { background: transparent; color: var(--gold-light); border: 1px solid var(--gold); }
+.btn-ghost:hover { background: var(--gold); color: var(--ink); }
+
+/* FOOTER */
+.site-footer { background: var(--ink); color: var(--paper); padding: 50px 0 30px; margin-top: 60px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 30px; }
+@media (max-width: 700px) { .footer-grid { grid-template-columns: 1fr; gap: 28px; } }
+.footer-col h3 { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; font-weight: 600; }
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 8px; font-size: 14px; }
+.footer-col a { color: rgba(244, 237, 225, 0.7); }
+.footer-col a:hover { color: var(--gold); text-decoration: none; }
+.footer-tagline { font-style: italic; color: rgba(244, 237, 225, 0.6); font-size: 14px; margin-top: 8px; max-width: 320px; }
+.footer-bottom { padding-top: 24px; border-top: 1px solid rgba(244, 237, 225, 0.1); display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: rgba(244, 237, 225, 0.5); font-family: 'JetBrains Mono', monospace; letter-spacing: 0.5px; }
+@media (max-width: 700px) { .footer-bottom { flex-direction: column; gap: 8px; text-align: center; } }
+</style>
+
+<!-- ═══ REFINED EDITORIAL POLISH LAYER ═══ -->
+<style>
+/* ═══════════════════════════════════════════════════════════════════
+   SARAL ARTHASHASTRA — REFINED EDITORIAL POLISH LAYER
+   "The Economist meets Stripe Press meets a private bank annual report"
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* — Refined CSS variables — */
+:root {
+  --ink: #0d1b2a;
+  --ink-soft: #1c2e4a;
+  --paper: #f4ede1;
+  --paper-2: #ebe3d4;
+  --paper-3: #faf6ed;
+  --gold: #c9a55a;
+  --gold-light: #e8c87a;
+  --gold-deep: #9c7a3c;
+  --rust: #a84432;
+  --teal: #1f4f4a;
+  --green: #2d6a4f;
+  --line: rgba(13, 27, 42, 0.10);
+  --line-soft: rgba(13, 27, 42, 0.06);
+  --shadow-sm: 0 1px 2px rgba(13, 27, 42, 0.04), 0 1px 3px rgba(13, 27, 42, 0.06);
+  --shadow-md: 0 4px 12px -2px rgba(13, 27, 42, 0.08), 0 2px 4px rgba(13, 27, 42, 0.04);
+  --shadow-lg: 0 12px 32px -8px rgba(13, 27, 42, 0.16), 0 4px 12px -2px rgba(13, 27, 42, 0.08);
+  --shadow-xl: 0 24px 60px -12px rgba(13, 27, 42, 0.22), 0 8px 20px -4px rgba(13, 27, 42, 0.10);
+  --transition: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* — Base smoothing — */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  background: var(--paper);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Subtle paper grain texture across the whole site */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: 
+    radial-gradient(circle at 15% 20%, rgba(168, 68, 50, 0.025) 0, transparent 50%),
+    radial-gradient(circle at 85% 80%, rgba(31, 79, 74, 0.025) 0, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(201, 165, 90, 0.02) 0, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* SVG noise overlay for paper texture */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: multiply;
+}
+
+/* Make sure content sits above the texture */
+header, section, footer, main, .container, .bar { position: relative; z-index: 2; }
+
+/* ═══════ TYPOGRAPHY REFINEMENT ═══════ */
+.h-title, h1, h2, h3 {
+  font-family: 'Fraunces', Georgia, serif !important;
+  font-feature-settings: 'ss01', 'ss02', 'liga', 'kern';
+  letter-spacing: -0.02em;
+}
+
+h1, .h-title {
+  font-weight: 400 !important;
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+}
+
+h2 {
+  font-weight: 500 !important;
+  font-variation-settings: 'opsz' 96;
+}
+
+.h-title em, h1 em, h2 em, h3 em {
+  font-style: italic;
+  color: var(--rust);
+  font-variation-settings: 'opsz' 144, 'SOFT' 100;
+}
+
+p, .h-sub {
+  font-feature-settings: 'kern', 'liga';
+  letter-spacing: -0.005em;
+}
+
+.eyebrow, .channel-handle, .footer-bottom {
+  font-family: 'JetBrains Mono', 'SF Mono', monospace !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase;
+  font-size: 11px !important;
+  color: var(--gold-deep);
+}
+
+/* ═══════ HEADER/NAV REFINEMENT ═══════ */
+header.bar, header.site-header {
+  background: rgba(244, 237, 225, 0.85) !important;
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--line-soft) !important;
+  transition: all 0.3s var(--transition);
+}
+
+/* ═══════ HERO REFINEMENT ═══════ */
+.hero {
+  position: relative;
+  padding: 80px 24px 100px !important;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 60px; right: 8%;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(201, 165, 90, 0.12), transparent 70%);
+  border-radius: 50%;
+  filter: blur(40px);
+  pointer-events: none;
+  animation: float 12s ease-in-out infinite;
+  z-index: 0;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 60px; left: 5%;
+  width: 280px; height: 280px;
+  background: radial-gradient(circle, rgba(168, 68, 50, 0.08), transparent 70%);
+  border-radius: 50%;
+  filter: blur(40px);
+  pointer-events: none;
+  animation: float 14s ease-in-out infinite reverse;
+  z-index: 0;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20px, -30px) scale(1.05); }
+}
+
+.hero-grid { position: relative; z-index: 1; }
+
+.h-title {
+  font-size: clamp(48px, 7vw, 88px) !important;
+  line-height: 1.02 !important;
+  margin-bottom: 28px !important;
+}
+
+.hi-line {
+  display: block;
+  font-size: 0.42em;
+  margin-top: 12px;
+  color: rgba(13, 27, 42, 0.55);
+  font-style: italic;
+  letter-spacing: 0.01em;
+}
+
+.h-sub {
+  font-size: clamp(17px, 1.6vw, 19px) !important;
+  line-height: 1.65 !important;
+  color: rgba(13, 27, 42, 0.78) !important;
+  max-width: 540px;
+  margin-bottom: 40px !important;
+}
+
+/* ═══════ BUTTONS — REFINED ═══════ */
+.btn-primary, .btn-secondary, .form-submit, .cta-btn {
+  position: relative;
+  padding: 14px 28px !important;
+  border-radius: 6px !important;
+  font-family: 'Fraunces', serif !important;
+  font-weight: 500 !important;
+  font-size: 15px !important;
+  letter-spacing: 0 !important;
+  transition: all 0.25s var(--transition) !important;
+  display: inline-flex !important;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--ink) !important;
+  color: var(--paper) !important;
+  border: 1px solid var(--ink) !important;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  background: var(--rust) !important;
+  border-color: var(--rust) !important;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-primary span, .btn-primary .arrow {
+  transition: transform 0.25s var(--transition);
+  display: inline-block;
+}
+
+.btn-primary:hover span, .btn-primary:hover .arrow {
+  transform: translateX(4px);
+}
+
+.btn-secondary {
+  background: transparent !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--line) !important;
+}
+
+.btn-secondary:hover {
+  background: var(--paper-3) !important;
+  border-color: var(--ink) !important;
+  transform: translateY(-2px);
+}
+
+/* ═══════ SECTIONS ═══════ */
+section.section, .section {
+  padding: 100px 24px !important;
+  position: relative;
+}
+
+.section-head {
+  margin-bottom: 64px;
+}
+
+.section-head h2 {
+  font-size: clamp(36px, 5vw, 56px) !important;
+  line-height: 1.05 !important;
+  font-weight: 400 !important;
+  margin-bottom: 16px !important;
+}
+
+/* ═══════ CARDS — REFINED ═══════ */
+.course, .video-card, .channel, .session-card {
+  background: var(--paper-3) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 12px !important;
+  padding: 36px !important;
+  transition: all 0.35s var(--transition) !important;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.course::before, .video-card::before, .session-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity 0.3s var(--transition);
+}
+
+.course:hover, .video-card:hover, .session-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(201, 165, 90, 0.4) !important;
+}
+
+.course:hover::before, .video-card:hover::before, .session-card:hover::before {
+  opacity: 1;
+}
+
+.channel:hover {
+  background: var(--paper-3) !important;
+  transform: translateX(4px);
+}
+
+/* ═══════ ABOUT PORTRAIT — REFINED ═══════ */
+.about-portrait {
+  position: relative;
+}
+
+.portrait-img {
+  border-radius: 16px !important;
+  box-shadow: var(--shadow-xl) !important;
+  filter: contrast(1.02) saturate(0.95);
+  transition: all 0.6s var(--transition) !important;
+}
+
+.about-portrait::before {
+  content: '';
+  position: absolute;
+  top: -16px; left: -16px;
+  width: 80px; height: 80px;
+  border-top: 2px solid var(--gold);
+  border-left: 2px solid var(--gold);
+  z-index: 1;
+  opacity: 0.6;
+}
+
+.about-portrait::after {
+  content: '';
+  position: absolute;
+  bottom: -16px; right: -16px;
+  width: 80px; height: 80px;
+  border-bottom: 2px solid var(--rust);
+  border-right: 2px solid var(--rust);
+  z-index: 1;
+  opacity: 0.6;
+}
+
+.about-portrait:hover .portrait-img {
+  transform: scale(1.02);
+  filter: contrast(1.05) saturate(1);
+}
+
+/* ═══════ PROMISE BAND ═══════ */
+.promise {
+  background: var(--ink) !important;
+  color: var(--paper) !important;
+  padding: 24px 0 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.promise-item {
+  font-family: 'Fraunces', serif;
+  font-size: 16px !important;
+  letter-spacing: -0.01em;
+  color: rgba(244, 237, 225, 0.85) !important;
+}
+
+.promise-item em {
+  color: var(--gold-light) !important;
+  font-weight: 500;
+}
+
+.promise-dot {
+  background: var(--gold) !important;
+}
+
+/* ═══════ CONTACT/FORM — REFINED ═══════ */
+.contact, section.contact {
+  background: linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%) !important;
+}
+
+.contact-form {
+  background: var(--paper-3) !important;
+  padding: 48px !important;
+  border-radius: 16px !important;
+  box-shadow: var(--shadow-md) !important;
+  border: 1px solid var(--line) !important;
+}
+
+.contact-form h3 {
+  font-size: 32px !important;
+  margin-bottom: 8px !important;
+}
+
+.form-row label {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 11px !important;
+  letter-spacing: 0.1em !important;
+  color: var(--gold-deep) !important;
+  text-transform: uppercase;
+}
+
+.form-row input, .form-row textarea, .form-row select {
+  border: 1px solid var(--line) !important;
+  border-radius: 8px !important;
+  padding: 14px 16px !important;
+  font-family: 'Fraunces', serif !important;
+  font-size: 16px !important;
+  background: white !important;
+  transition: all 0.2s var(--transition) !important;
+}
+
+.form-row input:focus, .form-row textarea:focus, .form-row select:focus {
+  border-color: var(--rust) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(168, 68, 50, 0.1) !important;
+}
+
+/* ═══════ FOOTER REFINEMENT ═══════ */
+footer {
+  background: var(--ink) !important;
+  position: relative;
+  padding: 80px 0 40px !important;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.footer-col h4 {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 11px !important;
+  letter-spacing: 0.15em !important;
+  color: var(--gold) !important;
+  text-transform: uppercase;
+  margin-bottom: 20px !important;
+}
+
+.footer-bottom em {
+  color: var(--gold-light) !important;
+}
+
+/* ═══════ REVEAL ANIMATIONS — REFINED ═══════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger child reveals */
+.reveal:nth-child(2) { transition-delay: 0.1s; }
+.reveal:nth-child(3) { transition-delay: 0.2s; }
+.reveal:nth-child(4) { transition-delay: 0.3s; }
+
+/* ═══════ TESTIMONIAL ═══════ */
+.testimonial {
+  background: var(--paper-3) !important;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 100px 24px !important;
+}
+
+.quote-mark {
+  color: var(--gold) !important;
+  opacity: 0.4;
+}
+
+/* ═══════ CONTAINER REFINEMENT ═══════ */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ═══════ SELECTION ═══════ */
+::selection {
+  background: var(--rust);
+  color: var(--paper);
+}
+
+/* ═══════ SCROLLBAR ═══════ */
+::-webkit-scrollbar { width: 12px; }
+::-webkit-scrollbar-track { background: var(--paper-2); }
+::-webkit-scrollbar-thumb { 
+  background: var(--gold-deep); 
+  border-radius: 6px;
+  border: 3px solid var(--paper-2);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--rust); }
+
+/* ═══════ FOCUS STATES ═══════ */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 2px solid var(--rust);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ═══════ MOBILE REFINEMENT ═══════ */
+@media (max-width: 768px) {
+  .hero { padding: 56px 20px 72px !important; }
+  section.section, .section { padding: 64px 20px !important; }
+  .h-title { font-size: clamp(38px, 9vw, 56px) !important; }
+  .contact-form { padding: 32px !important; }
+  .course, .video-card, .session-card { padding: 28px !important; }
+  .hero::before, .hero::after { display: none; }
+}
+
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <div class="header-row">
+      <a href="index.html" class="brand-link">
+        <div class="brand-mark">Sa</div>
+        <div class="brand-text">
+          <div class="brand-name">SaralArthaShastra</div>
+          <div class="brand-sub">Resources</div>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#videos">Videos</a></li>
+        <li><a href="articles/index.html">Articles</a></li>
+        <li><a href="tools.html">Tools</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-eyebrow">Free Downloads · No email required</div>
+    <h1>Resources to <em>save you</em> lakhs.</h1>
+    <p class="lede">Three downloadable PDFs distilled from 15 years of banking experience. Use them, share them with friends and family, save real money. No signup, no email gate — just click and download.</p>
+  </div>
+</section>
+
+<div class="container">
+  <div class="resources-grid">
+
+    <!-- LEAD MAGNET (most prominent) -->
+    <div class="resource-card" style="grid-column: span 2;">
+      <span class="resource-tag featured">⭐ Most Popular</span>
+      <div class="resource-icon">🔓</div>
+      <h2 class="resource-title">5 Hidden EMI <em>Truths</em></h2>
+      <p class="resource-desc">Five things every home loan borrower should know — but banks don't volunteer. From MCLR vs EBLR to prepayment strategy, each truth could save you between ₹50,000 and ₹5 lakh over your loan tenure. A 15-year banker exposes what the loan officer didn't tell you.</p>
+      <div class="resource-meta">
+        <span class="resource-meta-item">📄 8 pages</span>
+        <span class="resource-meta-item">⏱ 12 min read</span>
+        <span class="resource-meta-item">💰 Save ₹50K-5L</span>
+      </div>
+      <a href="resources/5-hidden-emi-truths.pdf" download class="resource-cta featured">Download PDF ↓</a>
+    </div>
+
+    <!-- REPO RATE CHEAT SHEET -->
+    <div class="resource-card">
+      <span class="resource-tag">Quick Reference</span>
+      <div class="resource-icon">⚡</div>
+      <h2 class="resource-title">Repo Rate <em>Cheat Sheet</em></h2>
+      <p class="resource-desc">Two-page distillation of everything Repo Rate. Definition, chain reaction to your EMI, EMI math at different rates, recent history (2020-2026), and quick rules. Print and stick on your wall.</p>
+      <div class="resource-meta">
+        <span class="resource-meta-item">📄 2 pages</span>
+        <span class="resource-meta-item">⏱ 4 min</span>
+      </div>
+      <a href="resources/repo-rate-cheatsheet.pdf" download class="resource-cta">Download PDF ↓</a>
+    </div>
+
+    <!-- EMI QUICK REFERENCE -->
+    <div class="resource-card">
+      <span class="resource-tag">Calculator Companion</span>
+      <div class="resource-icon">🧮</div>
+      <h2 class="resource-title">EMI Quick <em>Reference</em></h2>
+      <p class="resource-desc">The formula, a worked example, EMI lookup table per ₹1 lakh at every rate from 7% to 11% across 5 to 30 years, principal-vs-interest split year by year, and prepayment strategy comparison. Banker-grade.</p>
+      <div class="resource-meta">
+        <span class="resource-meta-item">📄 3 pages</span>
+        <span class="resource-meta-item">⏱ 6 min</span>
+      </div>
+      <a href="resources/emi-quickreference.pdf" download class="resource-cta">Download PDF ↓</a>
+    </div>
+
+  </div>
+
+  <!-- "More coming" honesty box -->
+  <div class="cta-block">
+    <h2>More resources<br>are <em>coming.</em></h2>
+    <p>I'm publishing one new free PDF every month — alongside the YouTube videos. Topics planned: CRR &amp; SLR explained, GST simplified, NPS vs PPF math, RBI Grade B prep notes. Subscribe to get notified.</p>
+    <a href="https://youtube.com/@saralarthashastra" target="_blank" rel="noopener" class="btn">Subscribe on YouTube</a>
+    <a href="https://t.me/saralarthashastra" target="_blank" rel="noopener" class="btn btn-ghost" style="margin-left: 10px;">Join Telegram</a>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>SaralArthaShastra</h3>
+        <p class="footer-tagline">Economics, simply explained — by a 15-year banker, MA Economics from BHU, UGC NET qualified.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="articles/index.html">Articles</a></li>
+          <li><a href="tools.html">Tools</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="courses.html">Courses</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Connect</h3>
+        <ul>
+          <li><a href="https://youtube.com/@saralarthashastra" target="_blank">YouTube</a></li>
+          <li><a href="https://t.me/saralarthashastra" target="_blank">Telegram</a></li>
+          <li><a href="https://instagram.com/saralarthashastra" target="_blank">Instagram</a></li>
+          <li><a href="mailto:saralarthashastra@gmail.com">Email</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 SaralArthaShastra · Ajit Kumar</span>
+      <span>All resources are free to share with attribution.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
