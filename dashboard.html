@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>SaralArthaShastra · Operations Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0d1b2a;
+  --ink-soft: #1c2e4a;
+  --paper: #f4ede1;
+  --paper-2: #ebe3d4;
+  --paper-3: #faf6ed;
+  --gold: #c9a55a;
+  --gold-light: #e8c87a;
+  --gold-deep: #9c7a3c;
+  --rust: #a84432;
+  --teal: #1f4f4a;
+  --green: #2d6a4f;
+  --line: rgba(13, 27, 42, 0.10);
+  --shadow-sm: 0 1px 2px rgba(13, 27, 42, 0.04), 0 1px 3px rgba(13, 27, 42, 0.06);
+  --shadow-md: 0 4px 12px -2px rgba(13, 27, 42, 0.08);
+  --shadow-lg: 0 12px 32px -8px rgba(13, 27, 42, 0.16);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+
+body {
+  font-family: 'Fraunces', Georgia, serif;
+  background: var(--paper);
+  color: var(--ink);
+  min-height: 100vh;
+  line-height: 1.5;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(168, 68, 50, 0.025) 0, transparent 50%),
+    radial-gradient(circle at 85% 80%, rgba(31, 79, 74, 0.025) 0, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+/* === LOGIN GATE === */
+.login-screen {
+  position: fixed; inset: 0;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.login-card {
+  background: var(--paper-3);
+  padding: 48px 40px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+}
+.login-card h1 {
+  font-size: 32px;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+.login-card h1 em { font-style: italic; color: var(--rust); }
+.login-card .sub {
+  font-size: 14px;
+  color: rgba(13, 27, 42, 0.6);
+  margin-bottom: 32px;
+  font-style: italic;
+}
+.login-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-family: 'Fraunces', serif;
+  font-size: 16px;
+  margin-bottom: 16px;
+  background: white;
+}
+.login-input:focus {
+  outline: none;
+  border-color: var(--rust);
+  box-shadow: 0 0 0 3px rgba(168, 68, 50, 0.1);
+}
+.login-btn {
+  width: 100%;
+  padding: 14px 24px;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  border-radius: 8px;
+  font-family: 'Fraunces', serif;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.login-btn:hover { background: var(--rust); }
+.login-error {
+  color: var(--rust);
+  font-size: 13px;
+  margin-top: 12px;
+  font-style: italic;
+  min-height: 18px;
+}
+
+/* === HEADER === */
+.dash-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+}
+.dash-title h1 {
+  font-size: 36px;
+  font-weight: 400;
+  letter-spacing: -0.5px;
+}
+.dash-title h1 em { font-style: italic; color: var(--rust); }
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--gold-deep);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+.dash-meta {
+  text-align: right;
+  font-size: 13px;
+  color: rgba(13, 27, 42, 0.6);
+  font-style: italic;
+}
+.dash-meta .time {
+  font-family: 'JetBrains Mono', monospace;
+  font-style: normal;
+  font-weight: 500;
+  color: var(--ink);
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+/* === GRID LAYOUT === */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.card {
+  background: var(--paper-3);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+.card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.card-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--gold-deep);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.card-title {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 14px;
+}
+
+/* Spans */
+.span-3 { grid-column: span 3; }
+.span-4 { grid-column: span 4; }
+.span-6 { grid-column: span 6; }
+.span-8 { grid-column: span 8; }
+.span-12 { grid-column: span 12; }
+
+/* === KPI TILES === */
+.kpi-num {
+  font-size: 42px;
+  font-weight: 400;
+  letter-spacing: -1px;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.kpi-num em { font-style: italic; color: var(--rust); }
+.kpi-label {
+  font-size: 13px;
+  color: rgba(13, 27, 42, 0.65);
+  font-style: italic;
+}
+.kpi-trend {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: 8px;
+  display: inline-block;
+}
+.kpi-trend.up { color: var(--green); }
+.kpi-trend.down { color: var(--rust); }
+.kpi-trend.flat { color: var(--gold-deep); }
+
+/* === QUICK ACCESS LINKS === */
+.quick-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.quick-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--ink);
+  font-size: 14px;
+  transition: all 0.2s;
+}
+.quick-link:hover {
+  border-color: var(--gold);
+  background: var(--paper);
+  transform: translateX(2px);
+}
+.ql-icon {
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--paper-2);
+  border-radius: 6px;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.ql-info { flex: 1; }
+.ql-name { font-weight: 500; font-size: 14px; }
+.ql-desc { 
+  font-size: 11px; 
+  color: rgba(13, 27, 42, 0.5); 
+  font-style: italic; 
+  margin-top: 1px;
+  font-family: 'JetBrains Mono', monospace; 
+  letter-spacing: 0.3px;
+}
+.ql-arrow { color: var(--gold-deep); font-size: 14px; }
+
+/* === LOG ENTRY === */
+.log-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.log-input-wrap label {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--gold-deep);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+.log-input-wrap input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  background: white;
+}
+.log-input-wrap input:focus {
+  outline: none;
+  border-color: var(--rust);
+  box-shadow: 0 0 0 3px rgba(168, 68, 50, 0.08);
+}
+.log-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+.btn {
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-family: 'Fraunces', serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.btn-primary:hover { background: var(--rust); border-color: var(--rust); }
+.btn-secondary { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn-secondary:hover { border-color: var(--ink); background: var(--paper-2); }
+.btn-ghost { background: transparent; color: rgba(13, 27, 42, 0.6); border: none; font-size: 13px; }
+.btn-ghost:hover { color: var(--rust); }
+
+/* === HISTORY TABLE === */
+.history-scroll { max-height: 280px; overflow-y: auto; }
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.history-table th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--gold-deep);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line);
+  position: sticky; top: 0;
+  background: var(--paper-3);
+}
+.history-table td {
+  padding: 10px;
+  border-bottom: 1px solid var(--line);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+}
+.history-table tr:hover td { background: var(--paper); }
+.history-empty {
+  text-align: center;
+  padding: 32px 16px;
+  color: rgba(13, 27, 42, 0.5);
+  font-style: italic;
+  font-size: 13px;
+}
+
+/* === GOAL PROGRESS === */
+.goal-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+.goal-row:last-child { border-bottom: none; }
+.goal-name {
+  flex: 0 0 180px;
+  font-size: 14px;
+}
+.goal-bar-wrap {
+  flex: 1;
+  height: 8px;
+  background: var(--paper-2);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+.goal-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold-deep), var(--gold));
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.goal-bar.over { background: linear-gradient(90deg, var(--green), #4caf50); }
+.goal-stats {
+  flex: 0 0 130px;
+  text-align: right;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--ink);
+}
+.goal-stats .pct { color: var(--gold-deep); font-weight: 600; }
+
+/* === PRIORITIES LIST === */
+.priorities {
+  list-style: none;
+}
+.priorities li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--line);
+  font-size: 14px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.priorities li:last-child { border-bottom: none; }
+.priorities li:hover { opacity: 0.7; }
+.priorities li.done {
+  opacity: 0.4;
+  text-decoration: line-through;
+}
+.pri-check {
+  width: 20px; height: 20px;
+  border: 1.5px solid var(--gold);
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: white;
+  background: white;
+  font-weight: bold;
+}
+.priorities li.done .pri-check {
+  background: var(--green);
+  border-color: var(--green);
+}
+.pri-text { flex: 1; }
+.pri-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--gold-deep);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 2px;
+}
+
+/* === EMPTY STATES === */
+.note {
+  font-size: 12px;
+  color: rgba(13, 27, 42, 0.55);
+  font-style: italic;
+  font-family: 'Fraunces', serif;
+  padding: 8px 0;
+}
+
+/* === MOBILE === */
+@media (max-width: 900px) {
+  .span-3, .span-4, .span-6, .span-8 { grid-column: span 12; }
+  .quick-links { grid-template-columns: 1fr; }
+  .dash-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .dash-meta { text-align: left; }
+  .dash-title h1 { font-size: 28px; }
+  .container { padding: 20px 16px; }
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--paper-2); }
+::-webkit-scrollbar-thumb { background: var(--gold-deep); border-radius: 4px; }
+
+#dashboard { display: none; }
+</style>
+</head>
+<body>
+
+<!-- ═════════ LOGIN GATE ═════════ -->
+<div id="login-screen" class="login-screen">
+  <div class="login-card">
+    <div class="eyebrow">SARAL ARTHASHASTRA · OPS</div>
+    <h1>Operations <em>Dashboard</em></h1>
+    <p class="sub">Private. For Ajit only.</p>
+    <input type="password" id="password-input" class="login-input" placeholder="Password" autocomplete="off">
+    <button class="login-btn" onclick="checkPassword()">Enter Dashboard →</button>
+    <div id="login-error" class="login-error"></div>
+  </div>
+</div>
+
+<!-- ═════════ DASHBOARD ═════════ -->
+<div id="dashboard">
+<div class="container">
+
+<!-- HEADER -->
+<header class="dash-header">
+  <div class="dash-title">
+    <div class="eyebrow">Saral Arthashastra · Operations</div>
+    <h1>Today, in <em>one screen.</em></h1>
+  </div>
+  <div class="dash-meta">
+    <div class="time" id="dash-date"></div>
+    <div id="greeting"></div>
+  </div>
+</header>
+
+<!-- KPI ROW -->
+<section class="grid">
+  <div class="card span-3">
+    <div class="card-eyebrow">▶ YouTube</div>
+    <div class="kpi-num" id="kpi-subscribers">—</div>
+    <div class="kpi-label">Subscribers</div>
+    <div class="kpi-trend flat" id="kpi-sub-trend"></div>
+  </div>
+  <div class="card span-3">
+    <div class="card-eyebrow">▶ Latest Episode</div>
+    <div class="kpi-num" id="kpi-ep-views">—</div>
+    <div class="kpi-label">Views (ep. 02)</div>
+    <div class="kpi-trend flat" id="kpi-views-trend"></div>
+  </div>
+  <div class="card span-3">
+    <div class="card-eyebrow">📅 Calendly</div>
+    <div class="kpi-num" id="kpi-bookings">—</div>
+    <div class="kpi-label">Bookings (this wk)</div>
+    <div class="kpi-trend flat" id="kpi-book-trend"></div>
+  </div>
+  <div class="card span-3">
+    <div class="card-eyebrow">📩 Web3Forms</div>
+    <div class="kpi-num" id="kpi-leads">—</div>
+    <div class="kpi-label">New leads (this wk)</div>
+    <div class="kpi-trend flat" id="kpi-leads-trend"></div>
+  </div>
+
+  <!-- TODAY'S PRIORITIES -->
+  <div class="card span-6">
+    <div class="card-eyebrow">📋 This Week's Priorities</div>
+    <div class="card-title">Work that moves the needle</div>
+    <ul class="priorities" id="priorities-list"></ul>
+    <button class="btn btn-ghost" onclick="resetWeeklyPriorities()" style="margin-top: 12px;">↻ Reset week</button>
+  </div>
+
+  <!-- LOG TODAY'S NUMBERS -->
+  <div class="card span-6">
+    <div class="card-eyebrow">✏️ Daily Log</div>
+    <div class="card-title">Take 30 seconds. Capture the numbers.</div>
+    <div class="log-form">
+      <div class="log-input-wrap">
+        <label>YouTube subs</label>
+        <input type="number" id="log-subs" placeholder="0">
+      </div>
+      <div class="log-input-wrap">
+        <label>Ep. 02 views</label>
+        <input type="number" id="log-ep-views" placeholder="0">
+      </div>
+      <div class="log-input-wrap">
+        <label>Calendly bookings</label>
+        <input type="number" id="log-bookings" placeholder="0">
+      </div>
+      <div class="log-input-wrap">
+        <label>Form submissions</label>
+        <input type="number" id="log-leads" placeholder="0">
+      </div>
+      <div class="log-input-wrap">
+        <label>PDF downloads</label>
+        <input type="number" id="log-pdfs" placeholder="0">
+      </div>
+      <div class="log-input-wrap">
+        <label>Revenue today (₹)</label>
+        <input type="number" id="log-revenue" placeholder="0">
+      </div>
+    </div>
+    <div class="log-actions">
+      <button class="btn btn-primary" onclick="saveLog()">Save today's log →</button>
+      <button class="btn btn-secondary" onclick="loadLastLog()">↩ Load yesterday's</button>
+    </div>
+    <p class="note" style="margin-top: 12px;">All entries saved locally on this device. Pre-filled from yesterday — just update what changed.</p>
+  </div>
+
+  <!-- QUICK ACCESS LINKS -->
+  <div class="card span-12">
+    <div class="card-eyebrow">⚡ One-Click Operations</div>
+    <div class="card-title">All your dashboards. One screen.</div>
+    <div class="quick-links">
+      <a href="https://studio.youtube.com/channel/UCbX2lrmf42mEdRpyCwoyqgg/analytics/tab-overview" target="_blank" class="quick-link">
+        <div class="ql-icon">▶</div>
+        <div class="ql-info">
+          <div class="ql-name">YouTube Studio</div>
+          <div class="ql-desc">Views · Subs · Watch time</div>
+        </div>
+        <div class="ql-arrow">↗</div>
+      </a>
+      <a href="https://calendly.com/event_types/user/me" target="_blank" class="quick-link">
+        <div class="ql-icon">📅</div>
+        <div class="ql-info">
+          <div class="ql-name">Calendly Bookings</div>
+          <div class="ql-desc">See scheduled calls</div>
+        </div>
+        <div class="ql-arrow">↗</div>
+      </a>
+      <a href="https://web3forms.com/dashboard" target="_blank" class="quick-link">
+        <div class="ql-icon">📩</div>
+        <div class="ql-info">
+          <div class="ql-name">Web3Forms</div>
+          <div class="ql-desc">Form submissions</div>
+        </div>
+        <div class="ql-arrow">↗</div>
+      </a>
+      <a href="https://dash.cloudflare.com" target="_blank" class="quick-link">
+        <div class="ql-icon">☁️</div>
+        <div class="ql-info">
+          <div class="ql-name">Cloudflare</div>
+          <div class="ql-desc">Site analytics · Deploy</div>
+        </div>
+        <div class="ql-arrow">↗</div>
+      </a>
+      <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank" class="quick-link">
+        <div class="ql-icon">✉️</div>
+        <div class="ql-info">
+          <div class="ql-name">Gmail Inbox</div>
+          <div class="ql-desc">saralarthashastra@gmail.com</div>
+        </div>
+        <div class="ql-arrow">↗</div>
+      </a>
+      <a href="https://github.com/saralarthashastra-beep/saralarthashastra-website" target="_blank" class="quick-link">
+        <div class="ql-icon">⚙️</div>
+        <div class="ql-info">
+          <div class="ql-name">GitHub Repo</div>
+          <div class="ql-desc">Code · Commits · Deploys</div>
+        </div>
+        <div class="ql-arrow">↗</div>
+      </a>
+      <a href="https://saralarthashastra.com" target="_blank" class="quick-link">
+        <div class="ql-icon">🌐</div>
+        <div class="ql-info">
+          <div class="ql-name">Live Website</div>
+          <div class="ql-desc">saralarthashastra.com</div>
+        </div>
+        <div class="ql-arrow">↗</div>
+      </a>
+      <a href="https://youtube.com/@saralarthashastra" target="_blank" class="quick-link">
+        <div class="ql-icon">📺</div>
+        <div class="ql-info">
+          <div class="ql-name">YouTube Channel</div>
+          <div class="ql-desc">Public-facing channel page</div>
+        </div>
+        <div class="ql-arrow">↗</div>
+      </a>
+      <a href="https://razorpay.com/dashboard" target="_blank" class="quick-link">
+        <div class="ql-icon">💳</div>
+        <div class="ql-info">
+          <div class="ql-name">Razorpay</div>
+          <div class="ql-desc">Payment links · Settlements</div>
+        </div>
+        <div class="ql-arrow">↗</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- 5-YEAR PLAN PROGRESS -->
+  <div class="card span-6">
+    <div class="card-eyebrow">🎯 Year 1 Pacing</div>
+    <div class="card-title">₹15L revenue target · 50 weeks left</div>
+    <div id="goal-list">
+      <div class="goal-row">
+        <div class="goal-name">YouTube subs (1,000)</div>
+        <div class="goal-bar-wrap"><div class="goal-bar" id="bar-subs"></div></div>
+        <div class="goal-stats"><span id="goal-subs">0</span> · <span class="pct" id="pct-subs">0%</span></div>
+      </div>
+      <div class="goal-row">
+        <div class="goal-name">Email list (500)</div>
+        <div class="goal-bar-wrap"><div class="goal-bar" id="bar-leads"></div></div>
+        <div class="goal-stats"><span id="goal-leads">0</span> · <span class="pct" id="pct-leads">0%</span></div>
+      </div>
+      <div class="goal-row">
+        <div class="goal-name">Episodes (52)</div>
+        <div class="goal-bar-wrap"><div class="goal-bar" id="bar-eps"></div></div>
+        <div class="goal-stats"><span id="goal-eps">2</span> · <span class="pct" id="pct-eps">0%</span></div>
+      </div>
+      <div class="goal-row">
+        <div class="goal-name">Revenue (₹15,00,000)</div>
+        <div class="goal-bar-wrap"><div class="goal-bar" id="bar-rev"></div></div>
+        <div class="goal-stats">₹<span id="goal-rev">0</span> · <span class="pct" id="pct-rev">0%</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LATEST CHANNEL ACTIVITY -->
+  <div class="card span-6">
+    <div class="card-eyebrow">📺 Latest Episodes (Live)</div>
+    <div class="card-title">Auto-loaded from YouTube</div>
+    <div id="youtube-feed" style="font-size: 13px;">
+      <div class="note">Loading channel feed...</div>
+    </div>
+    <p class="note" style="margin-top: 16px;">Note: View counts not in public RSS. Click into YouTube Studio for those.</p>
+  </div>
+
+  <!-- HISTORY -->
+  <div class="card span-12">
+    <div class="card-eyebrow">📊 Daily Log History</div>
+    <div class="card-title">Trend lines tell the truth, not single days.</div>
+    <div class="history-scroll">
+      <table class="history-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Subs</th>
+            <th>Ep. 02 views</th>
+            <th>Bookings (cum.)</th>
+            <th>Leads (cum.)</th>
+            <th>PDFs (cum.)</th>
+            <th>Revenue today</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="history-body"></tbody>
+      </table>
+    </div>
+    <div style="margin-top: 16px; display: flex; gap: 12px;">
+      <button class="btn btn-secondary" onclick="exportData()">⬇ Export to JSON</button>
+      <button class="btn btn-ghost" onclick="confirmClearHistory()" style="color: var(--rust);">⚠ Clear history</button>
+    </div>
+  </div>
+
+</section>
+
+<footer style="text-align: center; padding: 32px 0; font-size: 11px; color: rgba(13,27,42,0.5); font-family: 'JetBrains Mono', monospace; letter-spacing: 1px;">
+  SARAL ARTHASHASTRA · DASHBOARD v1.0 · Built for Ajit · Data lives only in your browser
+</footer>
+
+</div>
+</div>
+
+<script>
+// ═════════ AUTH GATE ═════════
+// Note: this is a soft password (client-side only). Provides "obscurity" not security.
+// Anyone determined could view source. But for a dashboard with no critical data,
+// it stops the casual visitor and the SEO crawlers (noindex/nofollow already set).
+const PASSWORD_HASH = '21bf55a2f5de8f7b24df7843b794d58ca0305706b3af63a32c31774596d2ef98'; // sha256 of password
+const SESSION_KEY = 'sa_dash_auth';
+
+async function sha256(text) {
+  const buf = new TextEncoder().encode(text);
+  const hash = await crypto.subtle.digest('SHA-256', buf);
+  return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+async function checkPassword() {
+  const input = document.getElementById('password-input').value;
+  const hash = await sha256(input);
+  if (hash === PASSWORD_HASH) {
+    sessionStorage.setItem(SESSION_KEY, '1');
+    showDashboard();
+  } else {
+    document.getElementById('login-error').textContent = 'Incorrect. Try again.';
+    document.getElementById('password-input').value = '';
+  }
+}
+
+function showDashboard() {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  initDashboard();
+}
+
+document.getElementById('password-input').addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') checkPassword();
+});
+
+// Auto-show if already authed in session
+if (sessionStorage.getItem(SESSION_KEY) === '1') {
+  showDashboard();
+}
+
+// ═════════ DASHBOARD INIT ═════════
+const STORAGE_KEY = 'sa_dash_logs';
+const PRIORITIES_KEY = 'sa_dash_priorities';
+
+const DEFAULT_PRIORITIES = [
+  { text: 'Share Episode 02 to WhatsApp groups + Telegram', tag: 'Promotion · 15 min' },
+  { text: 'Reply to every YouTube comment within 30 min today', tag: 'Engagement · daily' },
+  { text: 'LinkedIn post linking Episode 02', tag: 'Promotion · 20 min' },
+  { text: 'Begin Episode 03 script (Inflation)', tag: 'Content · 2 hours' },
+  { text: 'Verify "5 Hidden EMI Truths" PDF is on website', tag: 'Funnel · 5 min' },
+  { text: 'Daily log: enter today\'s numbers below', tag: 'Tracking · 30 sec' }
+];
+
+function initDashboard() {
+  updateDateTime();
+  setInterval(updateDateTime, 60000);
+  
+  loadPriorities();
+  loadLogs();
+  updateKPIs();
+  updateGoals();
+  loadYouTubeFeed();
+  
+  // Auto-load yesterday's values into today's input fields if today not yet logged
+  loadLastLog(true);
+}
+
+function updateDateTime() {
+  const now = new Date();
+  const opts = { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' };
+  document.getElementById('dash-date').textContent = now.toLocaleDateString('en-IN', opts).toUpperCase();
+  
+  const hour = now.getHours();
+  let g = 'Good evening, Ajit.';
+  if (hour < 12) g = 'Good morning, Ajit.';
+  else if (hour < 17) g = 'Good afternoon, Ajit.';
+  document.getElementById('greeting').textContent = g;
+}
+
+// ═════════ PRIORITIES ═════════
+function loadPriorities() {
+  const stored = localStorage.getItem(PRIORITIES_KEY);
+  let pris;
+  if (stored) {
+    pris = JSON.parse(stored);
+  } else {
+    pris = DEFAULT_PRIORITIES.map(p => ({ ...p, done: false }));
+    localStorage.setItem(PRIORITIES_KEY, JSON.stringify(pris));
+  }
+  
+  const list = document.getElementById('priorities-list');
+  list.innerHTML = '';
+  pris.forEach((p, idx) => {
+    const li = document.createElement('li');
+    li.className = p.done ? 'done' : '';
+    li.innerHTML = `
+      <div class="pri-check">${p.done ? '✓' : ''}</div>
+      <div class="pri-text">${escapeHtml(p.text)}<span class="pri-tag">${escapeHtml(p.tag)}</span></div>
+    `;
+    li.addEventListener('click', () => togglePriority(idx));
+    list.appendChild(li);
+  });
+}
+
+function togglePriority(idx) {
+  const pris = JSON.parse(localStorage.getItem(PRIORITIES_KEY));
+  pris[idx].done = !pris[idx].done;
+  localStorage.setItem(PRIORITIES_KEY, JSON.stringify(pris));
+  loadPriorities();
+}
+
+function resetWeeklyPriorities() {
+  if (!confirm('Reset all priorities to unchecked?')) return;
+  const pris = JSON.parse(localStorage.getItem(PRIORITIES_KEY) || '[]');
+  pris.forEach(p => p.done = false);
+  localStorage.setItem(PRIORITIES_KEY, JSON.stringify(pris));
+  loadPriorities();
+}
+
+// ═════════ LOG STORAGE ═════════
+function getLogs() {
+  return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+}
+
+function saveLogs(logs) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(logs));
+}
+
+function todayKey() {
+  return new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+}
+
+function saveLog() {
+  const entry = {
+    date: todayKey(),
+    subs: parseFloat(document.getElementById('log-subs').value) || 0,
+    ep_views: parseFloat(document.getElementById('log-ep-views').value) || 0,
+    bookings: parseFloat(document.getElementById('log-bookings').value) || 0,
+    leads: parseFloat(document.getElementById('log-leads').value) || 0,
+    pdfs: parseFloat(document.getElementById('log-pdfs').value) || 0,
+    revenue: parseFloat(document.getElementById('log-revenue').value) || 0,
+    timestamp: Date.now()
+  };
+  
+  let logs = getLogs();
+  // Replace today's entry if exists
+  logs = logs.filter(l => l.date !== entry.date);
+  logs.push(entry);
+  logs.sort((a, b) => b.date.localeCompare(a.date));
+  
+  saveLogs(logs);
+  
+  // Visual feedback
+  const btn = document.querySelector('.log-actions .btn-primary');
+  const oldText = btn.textContent;
+  btn.textContent = '✓ Saved!';
+  btn.style.background = 'var(--green)';
+  btn.style.borderColor = 'var(--green)';
+  setTimeout(() => {
+    btn.textContent = oldText;
+    btn.style.background = '';
+    btn.style.borderColor = '';
+  }, 1500);
+  
+  loadLogs();
+  updateKPIs();
+  updateGoals();
+}
+
+function loadLastLog(silent = false) {
+  const logs = getLogs();
+  if (logs.length === 0) {
+    if (!silent) alert('No previous log entries yet.');
+    return;
+  }
+  // Use most recent that is NOT today
+  let prev = logs.find(l => l.date !== todayKey());
+  if (!prev) prev = logs[0];
+  
+  document.getElementById('log-subs').value = prev.subs || '';
+  document.getElementById('log-ep-views').value = prev.ep_views || '';
+  document.getElementById('log-bookings').value = prev.bookings || '';
+  document.getElementById('log-leads').value = prev.leads || '';
+  document.getElementById('log-pdfs').value = prev.pdfs || '';
+  document.getElementById('log-revenue').value = ''; // revenue resets daily
+}
+
+function loadLogs() {
+  const logs = getLogs();
+  const tbody = document.getElementById('history-body');
+  
+  if (logs.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="8" class="history-empty">No entries yet. Save your first log above to start the trend.</td></tr>`;
+    return;
+  }
+  
+  tbody.innerHTML = '';
+  logs.forEach(l => {
+    const tr = document.createElement('tr');
+    const d = new Date(l.date + 'T00:00:00');
+    const dateStr = d.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: '2-digit' });
+    tr.innerHTML = `
+      <td><strong>${dateStr}</strong></td>
+      <td>${l.subs}</td>
+      <td>${l.ep_views}</td>
+      <td>${l.bookings}</td>
+      <td>${l.leads}</td>
+      <td>${l.pdfs}</td>
+      <td>${l.revenue > 0 ? '₹' + l.revenue.toLocaleString('en-IN') : '—'}</td>
+      <td><button class="btn btn-ghost" onclick="deleteLog('${l.date}')" style="font-size: 11px; padding: 4px 8px;">✕</button></td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function deleteLog(date) {
+  if (!confirm(`Delete log entry from ${date}?`)) return;
+  let logs = getLogs();
+  logs = logs.filter(l => l.date !== date);
+  saveLogs(logs);
+  loadLogs();
+  updateKPIs();
+  updateGoals();
+}
+
+function confirmClearHistory() {
+  if (!confirm('Clear ALL log history? This cannot be undone. Export first if you want a backup.')) return;
+  if (!confirm('Are you absolutely sure?')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  loadLogs();
+  updateKPIs();
+  updateGoals();
+}
+
+function exportData() {
+  const data = {
+    exported_at: new Date().toISOString(),
+    logs: getLogs(),
+    priorities: JSON.parse(localStorage.getItem(PRIORITIES_KEY) || '[]')
+  };
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `sa-dashboard-export-${todayKey()}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ═════════ KPI COMPUTATION ═════════
+function updateKPIs() {
+  const logs = getLogs();
+  if (logs.length === 0) {
+    return; // KPIs stay as "—"
+  }
+  const latest = logs[0];
+  
+  document.getElementById('kpi-subscribers').textContent = latest.subs.toLocaleString('en-IN');
+  document.getElementById('kpi-ep-views').textContent = latest.ep_views.toLocaleString('en-IN');
+  
+  // Bookings & leads — show "this week" deltas
+  const weekAgo = new Date(Date.now() - 7*24*60*60*1000).toISOString().slice(0,10);
+  const weekStart = logs.find(l => l.date <= weekAgo);
+  
+  const bookingsThisWk = weekStart ? Math.max(0, latest.bookings - weekStart.bookings) : latest.bookings;
+  const leadsThisWk = weekStart ? Math.max(0, latest.leads - weekStart.leads) : latest.leads;
+  
+  document.getElementById('kpi-bookings').textContent = bookingsThisWk;
+  document.getElementById('kpi-leads').textContent = leadsThisWk;
+  
+  // Trends — compare with previous log
+  if (logs.length >= 2) {
+    const prev = logs[1];
+    
+    setTrend('kpi-sub-trend', latest.subs - prev.subs);
+    setTrend('kpi-views-trend', latest.ep_views - prev.ep_views);
+  }
+}
+
+function setTrend(id, delta) {
+  const el = document.getElementById(id);
+  if (delta > 0) {
+    el.textContent = `↑ +${delta} since last log`;
+    el.className = 'kpi-trend up';
+  } else if (delta < 0) {
+    el.textContent = `↓ ${delta} since last log`;
+    el.className = 'kpi-trend down';
+  } else {
+    el.textContent = `— flat`;
+    el.className = 'kpi-trend flat';
+  }
+}
+
+// ═════════ GOAL PROGRESS ═════════
+function updateGoals() {
+  const logs = getLogs();
+  const latest = logs[0] || { subs: 0, leads: 0, revenue: 0 };
+  
+  // Year 1 targets
+  const TARGET_SUBS = 1000;
+  const TARGET_LEADS = 500;
+  const TARGET_EPS = 52;
+  const TARGET_REV = 1500000;
+  
+  // Cumulative revenue from logs
+  const totalRev = logs.reduce((sum, l) => sum + (l.revenue || 0), 0);
+  
+  setGoal('subs', latest.subs, TARGET_SUBS);
+  setGoal('leads', latest.leads, TARGET_LEADS);
+  setGoal('eps', 2, TARGET_EPS); // hardcoded — update manually as eps grow
+  setGoal('rev', totalRev, TARGET_REV);
+}
+
+function setGoal(key, current, target) {
+  const pct = Math.min(100, Math.round((current / target) * 100));
+  const bar = document.getElementById(`bar-${key}`);
+  bar.style.width = pct + '%';
+  if (pct >= 100) bar.classList.add('over');
+  
+  document.getElementById(`goal-${key}`).textContent = 
+    key === 'rev' ? current.toLocaleString('en-IN') : current;
+  document.getElementById(`pct-${key}`).textContent = pct + '%';
+}
+
+// ═════════ YOUTUBE FEED (PUBLIC RSS, NO AUTH) ═════════
+async function loadYouTubeFeed() {
+  const channelId = 'UCbX2lrmf42mEdRpyCwoyqgg'; // SaralArthaShastra channel ID
+  // Use a public CORS proxy for RSS — note: rss2json is one option
+  const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
+  const proxy = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+  
+  try {
+    const r = await fetch(proxy);
+    const data = await r.json();
+    if (!data.items || data.items.length === 0) throw new Error('Empty feed');
+    
+    const html = data.items.slice(0, 4).map(item => {
+      const pubDate = new Date(item.pubDate);
+      const ago = timeAgo(pubDate);
+      return `
+        <div style="padding: 10px 0; border-bottom: 1px solid var(--line); display: flex; gap: 10px; align-items: center;">
+          <span style="background: var(--rust); color: white; padding: 4px 8px; border-radius: 4px; font-size: 10px; font-family: 'JetBrains Mono', monospace; font-weight: 600; flex-shrink: 0;">EP</span>
+          <div style="flex: 1;">
+            <a href="${item.link}" target="_blank" style="color: var(--ink); text-decoration: none; font-weight: 500; font-size: 13px; display: block;">${escapeHtml(item.title)}</a>
+            <div style="font-size: 11px; color: rgba(13,27,42,0.5); font-style: italic; margin-top: 2px;">${ago}</div>
+          </div>
+          <a href="${item.link}" target="_blank" style="color: var(--gold-deep); text-decoration: none;">↗</a>
+        </div>
+      `;
+    }).join('');
+    
+    document.getElementById('youtube-feed').innerHTML = html;
+  } catch (e) {
+    document.getElementById('youtube-feed').innerHTML = `
+      <p class="note">Couldn't load feed automatically. <a href="https://youtube.com/@saralarthashastra" target="_blank" style="color: var(--rust);">Open channel →</a></p>
+    `;
+  }
+}
+
+function timeAgo(date) {
+  const sec = Math.floor((Date.now() - date) / 1000);
+  if (sec < 3600) return Math.floor(sec/60) + 'm ago';
+  if (sec < 86400) return Math.floor(sec/3600) + 'h ago';
+  if (sec < 604800) return Math.floor(sec/86400) + 'd ago';
+  if (sec < 2592000) return Math.floor(sec/604800) + 'w ago';
+  return Math.floor(sec/2592000) + 'mo ago';
+}
+
+// ═════════ HELPERS ═════════
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({
+    '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#039;'
+  }[c]));
+}
+
+</script>
+</body>
+</html>
